@@ -1,5 +1,7 @@
 # Developer Tracking Application
 
+## Project Statement
+To develop a resource management application with the purpose of organizing and showcasing resources related to my web developer learning process.
 
 ## Available Scripts
 
