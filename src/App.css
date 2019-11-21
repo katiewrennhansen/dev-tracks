@@ -1,1 +1,107 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: gray;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+nav a,
+footer a {
+    color: white;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+.nav-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.company-logo {
+    align-self: center;
+    padding-left: 30px;
+}
+
+.nav-container ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+h1 {
+    margin: 0 0 30px 0;
+}
+
+.content {
+    padding: 20px;
+}
+
+form {
+    width: 100%;
+    margin: 0 auto;
+    background: gray;
+    padding: 10px;
+    color: white;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+select {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.resources li {
+    background: rgb(215, 215, 215);
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.status {
+    padding: 6px;
+    width:100px;
+    text-align: center;
+    border-radius: 5px;
+    font-family: sans-serif;
+}
+
+.completed {
+    background: radial-gradient(circle, rgba(167,246,177,1) 0%, rgba(110,203,95,1) 100%);
+}
+
+.todo {
+    background: yellow;
+}
+
+.inprogress {
+    background: gray;
+}
+
+
+
+footer {
+    background-color: gray;
+    color: white;
+    padding: 50px 0;
+}
 
