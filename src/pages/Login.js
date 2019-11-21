@@ -10,9 +10,9 @@ class Login extends Component {
         <h1>Login</h1>
         <form>
             <h3>Login to your account to get started tracking</h3>
-            <label for="username">Username</label>
+            <label htmlFor="username">Username</label>
             <input type="text" name="username" id="username" placeholder="username"></input>
-            <label for="password">Password</label>            
+            <label htmlFor="password">Password</label>            
             <input type="password" name="password" id="password" placeholder="password"></input>
             <Link to='/dashboard'>Submit</Link>
         </form>

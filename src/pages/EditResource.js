@@ -9,20 +9,20 @@ class EditResource extends Component {
       <>
         <h1>Edit Resource</h1>
         <form>
-            <label for="title">Title</label>
+            <label htmlFor="title">Title</label>
             <input type="text" name="title" id="title" placeholder="title"></input>
-            <label for="title">Type</label>
+            <label htmlFor="title">Type</label>
             <select>
                 <option>Article</option>
                 <option>Online Class</option>
                 <option>Project</option>
                 <option>Meetup</option>
             </select>
-            <label for="url">Url</label>            
+            <label htmlFor="url">Url</label>            
             <input type="text" name="url" id="url" placeholder="url"></input>
-            <label for="url">Description</label>            
+            <label htmlFor="url">Description</label>            
             <textarea rows="5" cols="20"></textarea>
-            <label for="url">Status</label>            
+            <label htmlFor="url">Status</label>            
             <select>
                 <option>To Do</option>
                 <option>In Progress</option>

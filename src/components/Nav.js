@@ -7,8 +7,8 @@ class Nav extends Component {
 
     return (
         <nav>
-        <div class="nav-container">
-            <Link to='/' class="company-logo">Company Name</Link>
+        <div className="nav-container">
+            <Link to='/' className="company-logo">Company Name</Link>
             <ul>
                 <li><Link to='/login'>Sign In</Link></li>
                 <li><Link to='/dashboard'>Demo</Link></li>

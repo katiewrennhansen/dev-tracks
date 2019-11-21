@@ -6,6 +6,7 @@ import EditResource from './pages/EditResource'
 import AddResource from './pages/AddResource'
 import Login from './pages/Login'
 import Nav from './components/Nav'
+import Footer from './components/Footer'
 import './App.css';
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
             />
           </Switch>
         </section>
+        <Footer />
       </main>
     );
   }
