@@ -6,7 +6,7 @@ class EditResource extends Component {
   render() {
 
     return (
-      <>
+      <div className='edit-resource'>
         <h1>Edit Resource</h1>
         <form>
             <label htmlFor="title">Title</label>
@@ -28,10 +28,11 @@ class EditResource extends Component {
                 <option>In Progress</option>
                 <option>Completed</option>
             </select>
-            <Link to='/dashboard'>Save</Link>
+            <label htmlFor="date-completed">Date Completed</label>            
+            <input type="date" name='date-completed'></input>
+            <Link className='save' to='/dashboard'>Save</Link>
         </form>
-    
-      </>
+      </div>
     );
   }
   

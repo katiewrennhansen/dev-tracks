@@ -35,7 +35,7 @@ footer a {
 
 .company-logo {
     align-self: center;
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
 .nav-container ul {
@@ -47,21 +47,88 @@ h1 {
     margin: 0 0 30px 0;
 }
 
-.content {
-    padding: 20px;
+.profile-image {
+    width: 20%;
 }
 
-form {
+.content {
+    padding: 50px 20px;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.landing-content p {
+    margin-bottom: 50px;
+}
+
+.get-started {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 12px 16px;
+}
+
+.get-started:hover {
+    background: black;
+    color: white;
+    transition: 200ms linear;
+}
+
+.add-resource,
+.edit-resource,
+.login-form,
+.edit-account {
+    padding-top: 50px;
+}
+
+.add-resource form,
+.edit-resource form,
+.login-form form,
+.edit-account form {
     width: 100%;
+    max-width: 400px;
     margin: 0 auto;
-    background: gray;
-    padding: 10px;
+    background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(167,167,167,1) 100%);
+    padding: 25px 12px 30px;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgb(181, 181, 181);
+}
+
+.add-resource input,
+.add-resource textarea,
+.add-resource select,
+.edit-resource input,
+.edit-resource textarea,
+.edit-resource select,
+.login-form input,
+.edit-account input {
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+}
+
+.add-resource select,
+.edit-resource select {
+    appearance: none;
+}
+
+.save {
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 8px 20px;
+}
+
+.save:hover {
+    background: black;
     color: white;
 }
 
 label {
     display: block;
     margin-bottom: 5px;
+    text-align: left;
 }
 
 input,
@@ -70,17 +137,50 @@ select {
     margin-bottom: 20px;
 }
 
+.profile {
+    padding-bottom: 100px;
+}
+
 .resources li {
     background: rgb(215, 215, 215);
-    padding: 10px;
+    padding: 10px 15px 30px;
     margin: 10px 0;
     border-radius: 5px;
+}
+
+.resources li:hover {
+    cursor: pointer;
+}
+
+.actions {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    font-size: 16px;
+}
+
+.actions button,
+.edit {
+    align-self: center;
+    border: 1px solid black;
+    padding: 10px 16px; 
+    max-width: 100px;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.hidden {
+    display: none;
 }
 
 .status {
     padding: 6px;
     width:100px;
-    text-align: center;
+    margin: 0 auto;
     border-radius: 5px;
     font-family: sans-serif;
 }
@@ -94,14 +194,77 @@ select {
 }
 
 .inprogress {
-    background: gray;
+    background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(167,167,167,1) 100%);
 }
-
-
 
 footer {
     background-color: gray;
     color: white;
-    padding: 50px 0;
+    padding: 40px 0;
+    text-align: center;
 }
 
+
+
+@media (min-width: 768px) {
+    .nav-container {
+        grid-template-columns: 300px, auto;
+    }
+    .company-logo {
+        padding-left: 50px;
+    }
+    .nav-container ul {
+        justify-items: center;
+    }
+    .landing-content {
+        margin: 0 auto;
+        padding-top: 100px;
+        width: 70%;
+    }
+    .resources {
+        margin-left: 200px;
+        padding: 0 40px;
+    }
+    .resources ul {
+        margin-top: 100px;        
+    }
+    nav {
+        position: fixed;
+        width: 100%;
+    }
+    .profile {
+        padding-top: 50px;
+        position: fixed;
+        top: 40px;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+    }
+    .resources-grid-container {
+        background: white;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 300px);
+        margin-bottom: 30px;
+        position: fixed;
+        padding: 30px;
+        top: 50px;
+    }
+    .resources-grid-container h2 {
+        justify-self: flex-start;
+        align-self: flex-end;
+        margin: 0;
+    }
+    .resources-grid-container .save {
+        justify-self: flex-end;
+    }
+    h1 {
+        font-size: 45px;
+    }
+}
+@media (min-width: 1200px) {
+    .landing-content {
+        padding-top: 230px;
+        width: 60%;
+    }
+}

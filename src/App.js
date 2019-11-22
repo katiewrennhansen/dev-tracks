@@ -4,6 +4,7 @@ import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import EditResource from './pages/EditResource'
 import AddResource from './pages/AddResource'
+import AccountSettings from './pages/AccountSettings'
 import Login from './pages/Login'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
@@ -33,6 +34,10 @@ class App extends Component {
             <Route 
               path='/edit-resource'
               component={EditResource}
+            />
+            <Route 
+              path='/account'
+              component={AccountSettings}
             />
             <Route 
               path='/login'
