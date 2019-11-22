@@ -173,10 +173,13 @@ select {
     margin: 0 10px;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .hidden {
     display: none;
 }
-
 
 .status {
     padding: 6px;
@@ -232,6 +235,7 @@ footer {
     nav {
         position: fixed;
         width: 100%;
+        z-index: 100;
     }
     .profile {
         padding-top: 50px;
@@ -240,6 +244,7 @@ footer {
         left: 0;
         width: 250px;
         height: 100vh;
+        z-index: 10;
     }
     .resources-grid-container {
         background: white;
@@ -250,6 +255,7 @@ footer {
         position: fixed;
         padding: 30px;
         top: 50px;
+        z-index: 20;
     }
     .resources-grid-container h2 {
         justify-self: flex-start;
@@ -264,7 +270,6 @@ footer {
     }
     .resource {
         position: relative;
-        z-index: -1;
         text-align: left;
     }
     .status {
