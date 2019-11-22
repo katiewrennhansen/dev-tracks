@@ -167,7 +167,7 @@ select {
 .edit {
     align-self: center;
     border: 1px solid black;
-    padding: 10px 16px; 
+    padding: 8px 15px; 
     max-width: 100px;
     border-radius: 5px;
     margin: 0 10px;
@@ -176,6 +176,7 @@ select {
 .hidden {
     display: none;
 }
+
 
 .status {
     padding: 6px;
@@ -261,6 +262,31 @@ footer {
     h1 {
         font-size: 45px;
     }
+    .resource {
+        position: relative;
+        z-index: -1;
+        text-align: left;
+    }
+    .status {
+        position: absolute;
+        text-align: center;
+        top: 20px;
+        right: 20px;
+    }
+    .date-completed {
+        position: absolute;
+        top: 45px;
+        right: 22px;
+    }
+    .hidden-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+    .actions {
+        width: 100%;
+        margin: 0;
+        align-self: center;
+    } 
 }
 @media (min-width: 1200px) {
     .landing-content {
