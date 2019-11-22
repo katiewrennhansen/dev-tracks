@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import EditResource from './pages/EditResource'
@@ -32,7 +32,7 @@ class App extends Component {
               component={AddResource}
             />
             <Route 
-              path='/edit-resource'
+              path='/edit-resource/:id'
               component={EditResource}
             />
             <Route 
@@ -52,4 +52,4 @@ class App extends Component {
   
 }
 
-export default App;
+export default withRouter(App);

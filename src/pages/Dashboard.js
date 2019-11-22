@@ -34,10 +34,23 @@ class Dashboard extends Component {
       })
   }
 
+  componentDidUpdate(){
+    ResourceApiService.getData()
+      .then(data => {
+        this.setData(data)
+      }).catch(err => {
+        console.log(err)
+      })
+  }
+
   deleteData = (id) => {
     ResourceApiService.deleteData(id)
       .then(res => {
         console.log(res)
+        ResourceApiService.getData()
+          .then(data => {
+            this.setState({ data: data })
+          })
       })
       .catch(err => {
         console.log(err)
@@ -63,10 +76,8 @@ class Dashboard extends Component {
                     <div className='hidden-content'>
                       <p className='description'>{i.description}</p>
                       <div className='actions'>
-                        <Link className='edit' to='/edit-resource'>Edit</Link>
-                        <div>
+                          <button onClick={() => this.updatePage(i.id)}>Edit</button>
                           <button onClick={() => this.deleteData(i.id)}>Delete</button>
-                        </div>
                       </div>
                     </div>
                 </li>
