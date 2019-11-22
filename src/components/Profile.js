@@ -18,6 +18,10 @@ class Profile extends Component {
           <p>LinkedIn</p>
           <p>Portfolio</p>
           <p>Resume</p>
+          <br></br>
+          <div className='projects'>
+            <h4>Projects</h4>
+          </div>
         </section>
     );
   }

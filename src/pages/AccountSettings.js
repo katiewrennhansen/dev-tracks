@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import Form from '../components/Form'
 
 class AccountSettings extends Component {
 
@@ -17,13 +18,12 @@ class AccountSettings extends Component {
             <input type="email" name="email" id="email" placeholder="Email"></input>
             <Link className='save' to='/dashboard'>Save</Link>
         </form>
-        <form>
-            <label htmlFor="name">Name</label>            
-            <input type="text" name="name" id="name" placeholder="Account Type"></input>
-            <label htmlFor="url">URL</label>  
-            <input type="text" name="url" id="url" placeholder="Account URL"></input>
-            <Link className='save' to='/dashboard'>Add Account</Link>
-        </form>
+        <Form 
+          title='Account'
+        />
+        <Form 
+          title='Project'
+        />
       </div>
     );
   }
