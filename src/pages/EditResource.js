@@ -1,22 +1,43 @@
 import React, { Component } from 'react';
 import ResourceApiService from '../services/resource-api-service'
+import ResourceContext from '../contexts/ResourceContext'
 
 class EditResource extends Component {
+  static contextType = ResourceContext
+
+  // componentDidMount(){
+  //   const id = this.context.idToEdit
+  //   ResourceApiService.getData()
+  // }
 
   updateResource = (e) => {
-    const id = 10
     e.preventDefault()
-    const updatedResource = {
-      name: e.target.title.value || '',
-      type: e.target.type.value || '',
-      status: e.target.status.value || '',
-      url: e.target.url.value || '',
-      description: e.target.description.value || '',
-      date_completed: e.target.date_completed.value || ''
+    const id = this.context.idToEdit
+    const { name, type, status, url, description, date_completed } = e.target
+    let updatedResource = {}
+
+    if(name.value !== '' && name.value !== null){
+      updatedResource.name = name.value
     }
+    if(type.value !== '' && type.value !== null){
+      updatedResource.type = type.value
+    }
+    if(status.value !== '' && status.value !== null){
+      updatedResource.status = status.value
+    }
+    if(url.value !== '' && url.value !== null){
+      updatedResource.url = url.value
+    }
+    if(description.value !== '' && description.value !== null){
+      updatedResource.description = description.value
+    }
+    if(date_completed.value !== '' && date_completed.value !== null){
+      updatedResource.date_completed = date_completed.value
+    }
+  
     ResourceApiService.updateData(id, updatedResource)
       .then(data => {
-        console.log('added')
+        console.log(data)
       }).catch(err => {
         console.log(err)
       })
@@ -24,13 +45,12 @@ class EditResource extends Component {
   }
 
   render() {
-
     return (
       <div className='edit-resource'>
         <h1>Edit Resource</h1>
         <form onSubmit={(e) => this.updateResource(e)}>
-            <label htmlFor="title">Title</label>
-            <input type="text" name="title" id="title" placeholder="title"></input>
+            <label htmlFor="name">Title</label>
+            <input type="text" name="name" id="name" placeholder="name"></input>
             <label htmlFor="title">Type</label>
             <select name='type'>
                 <option value=''>Select a Resource Type</option>

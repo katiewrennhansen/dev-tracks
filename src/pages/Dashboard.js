@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Profile from '../components/Profile'
 import ResourceApiService from '../services/resource-api-service'
+import ResourceContext from '../contexts/ResourceContext'
 
 
 class Dashboard extends Component {
+  static contextType = ResourceContext
+
   constructor(props){
     super(props)
     this.state = {
       active: false,
-      data: []
     }
   }
 
@@ -19,16 +21,10 @@ class Dashboard extends Component {
     })
   }
 
-  setData = (data) => {
-    this.setState({
-      data: data
-    })
-  }
-
   componentDidMount(){
     ResourceApiService.getData()
       .then(data => {
-        this.setData(data)
+        this.context.setData(data)
       }).catch(err => {
         console.log(err)
       })
@@ -37,7 +33,7 @@ class Dashboard extends Component {
   componentDidUpdate(){
     ResourceApiService.getData()
       .then(data => {
-        this.setData(data)
+        this.context.setData(data)
       }).catch(err => {
         console.log(err)
       })
@@ -46,10 +42,9 @@ class Dashboard extends Component {
   deleteData = (id) => {
     ResourceApiService.deleteData(id)
       .then(res => {
-        console.log(res)
         ResourceApiService.getData()
           .then(data => {
-            this.setState({ data: data })
+            this.context.setData(data)
           })
       })
       .catch(err => {
@@ -67,7 +62,7 @@ class Dashboard extends Component {
               <Link className='save' to='/add-resource'> &#65291; Add Resource</Link>
             </div>
             <ul>
-              {this.state.data.map(i => (
+              {this.context.data.map(i => (
                   <li key={i.id} className='resource'>
                     <h2>{i.name}</h2>
                     <p>{i.type}</p>
@@ -76,7 +71,7 @@ class Dashboard extends Component {
                     <div className='hidden-content'>
                       <p className='description'>{i.description}</p>
                       <div className='actions'>
-                          <button onClick={() => this.updatePage(i.id)}>Edit</button>
+                          <Link to={`/edit-resource/${i.id}`} onClick={() => this.context.updateId(i.id)}>Edit</Link>
                           <button onClick={() => this.deleteData(i.id)}>Delete</button>
                       </div>
                     </div>

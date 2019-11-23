@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-function Form(props) {
+function AddItemForm(props) {
     return (
         <>
         <h3>Add {props.title}</h3>
@@ -16,4 +16,4 @@ function Form(props) {
     );
   }
 
-export default Form;
+export default AddItemForm;

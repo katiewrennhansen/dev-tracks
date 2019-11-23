@@ -13,7 +13,6 @@ class AddResource extends Component {
       description: e.target.description.value,
       date_completed: e.target.date_completed.value
     }
-    console.log(newResource)
     ResourceApiService.postData(newResource)
       .then(data => {
         console.log('added')
@@ -54,7 +53,7 @@ class AddResource extends Component {
             <input type="date" name='date_completed'></input>
             <input type='submit'></input>
         </form>
-      </div>
+      </div> 
     );
   }
   

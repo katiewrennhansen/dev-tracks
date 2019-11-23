@@ -9,8 +9,16 @@ import Login from './pages/Login'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import './App.css';
+import PrivateRoute from './utilities/PrivateRoute'
+import PublicOnlyRoute from './utilities/PublicOnlyRoute'
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      error: null
+    }
+  }
 
   render() {
 
@@ -25,21 +33,30 @@ class App extends Component {
             />
             <Route 
               path='/dashboard'
-              component={Dashboard}
+              render={(props) => (
+                <Dashboard 
+                  updateData={this.updateData}
+                />
+              )}
             />
-            <Route 
+            <PrivateRoute 
               path='/add-resource'
               component={AddResource}
             />
-            <Route 
+            <PrivateRoute 
               path='/edit-resource/:id'
-              component={EditResource}
+              render={(histoy) => (
+                <EditResource
+                  id={this.state.idToEdit}
+                  history={this.props.history}
+                />
+              )}
             />
-            <Route 
-              path='/account'
+            <PrivateRoute 
+              path={'/account'}
               component={AccountSettings}
             />
-            <Route 
+            <PublicOnlyRoute 
               path='/login'
               component={Login}
             />

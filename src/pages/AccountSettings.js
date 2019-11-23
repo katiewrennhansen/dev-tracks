@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import Form from '../components/Form'
+import AddItemForm from '../components/AddItemForm'
 
 class AccountSettings extends Component {
 
@@ -18,10 +18,10 @@ class AccountSettings extends Component {
             <input type="email" name="email" id="email" placeholder="Email"></input>
             <Link className='save' to='/dashboard'>Save</Link>
         </form>
-        <Form 
+        <AddItemForm 
           title='Account'
         />
-        <Form 
+        <AddItemForm 
           title='Project'
         />
       </div>
