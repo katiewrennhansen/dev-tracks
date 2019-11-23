@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Profile from '../components/Profile'
 import ResourceApiService from '../services/resource-api-service'
 import ResourceContext from '../contexts/ResourceContext'
-
+import TokenService from '../services/token-service'
 
 class Dashboard extends Component {
   static contextType = ResourceContext
@@ -59,7 +59,10 @@ class Dashboard extends Component {
         <section className="resources">
             <div className='resources-grid-container'>
               <h2>Resources</h2>
-              <Link className='save' to='/add-resource'> &#65291; Add Resource</Link>
+              {TokenService.hasAuthToken()
+                ? (<Link className='save' to='/add-resource'> &#65291; Add Resource</Link>)
+                : null
+              }
             </div>
             <ul>
               {this.context.data.map(i => (
@@ -70,10 +73,15 @@ class Dashboard extends Component {
                     <p className='date-completed'>{i.date_completed}</p>
                     <div className='hidden-content'>
                       <p className='description'>{i.description}</p>
-                      <div className='actions'>
-                          <Link to={`/edit-resource/${i.id}`} onClick={() => this.context.updateId(i.id)}>Edit</Link>
-                          <button onClick={() => this.deleteData(i.id)}>Delete</button>
-                      </div>
+                      {TokenService.hasAuthToken()
+                        ? (
+                          <div className='actions'>
+                            <Link to={`/edit-resource/${i.id}`} onClick={() => this.context.updateId(i.id)}>Edit</Link>
+                            <button onClick={() => this.deleteData(i.id)}>Delete</button>
+                           </div>
+                        )
+                        : null
+                      } 
                     </div>
                 </li>
               ))}    
