@@ -1,16 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 
 function AddItemForm(props) {
     return (
         <>
         <h3>Add {props.title}</h3>
-        <form>
+        <form onSubmit={props.handleSubmit}>
             <label htmlFor="name">{props.title} Name</label>            
             <input type="text" name="name" id="name" placeholder="Type"></input>
             <label htmlFor="url">{props.title} URL</label>  
             <input type="text" name="url" id="url" placeholder="URL"></input>
-            <Link className='save' to='/dashboard'>Add {props.title}</Link>
+            <button>Add {props.title}</button>
         </form>
        </>
     );

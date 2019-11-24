@@ -11,7 +11,8 @@ class AddResource extends Component {
       status: e.target.status.value,
       url: e.target.url.value,
       description: e.target.description.value,
-      date_completed: e.target.date_completed.value
+      date_completed: e.target.date_completed.value,
+      user_id: 1
     }
     ResourceApiService.postData(newResource)
       .then(data => {
