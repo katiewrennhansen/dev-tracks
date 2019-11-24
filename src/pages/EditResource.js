@@ -5,14 +5,20 @@ import ResourceContext from '../contexts/ResourceContext'
 class EditResource extends Component {
   static contextType = ResourceContext
 
-  // componentDidMount(){
-  //   const id = this.context.idToEdit
-  //   ResourceApiService.getData()
-  // }
+  componentDidMount(){
+    const id = this.props.match.params.id
+    ResourceApiService.getResourceById(id)
+      .then(data => {
+        this.context.setResource(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   updateResource = (e) => {
     e.preventDefault()
-    const id = this.context.idToEdit
+    const id = this.props.match.params.id
     const { name, type, status, url, description, date_completed } = e.target
     let updatedResource = {}
 
@@ -34,10 +40,15 @@ class EditResource extends Component {
     if(date_completed.value !== '' && date_completed.value !== null){
       updatedResource.date_completed = date_completed.value
     }
+
+    console.log(updatedResource)
   
     ResourceApiService.updateData(id, updatedResource)
       .then(data => {
-        console.log(data)
+        ResourceApiService.getData()
+          .then(data => {
+            this.context.setData(data)
+          })
       }).catch(err => {
         console.log(err)
       })
@@ -45,14 +56,15 @@ class EditResource extends Component {
   }
 
   render() {
+    const r = this.context.resource
     return (
       <div className='edit-resource'>
         <h1>Edit Resource</h1>
         <form onSubmit={(e) => this.updateResource(e)}>
             <label htmlFor="name">Title</label>
-            <input type="text" name="name" id="name" placeholder="name"></input>
+            <input type="text" name="name" id="name" defaultValue={r.name}></input>
             <label htmlFor="title">Type</label>
-            <select name='type'>
+            <select name='type' defaultValue={r.type}>
                 <option value=''>Select a Resource Type</option>
                 <option value='article'>Article</option>
                 <option value='online-class'>Online Class</option>
@@ -60,10 +72,10 @@ class EditResource extends Component {
                 <option value='meetup'>Meetup</option>
             </select>
             <label htmlFor="url">Url</label>            
-            <input type="text" name="url" id="url" placeholder="url"></input>
+            <input type="text" name="url" id="url" defaultValue={r.url}></input>
             <label htmlFor="url">Description</label>            
-            <textarea rows="5" cols="20" name='description'></textarea>
-            <label htmlFor="url">Status</label>            
+            <textarea rows="5" cols="20" name='description' defaultValue={r.description}></textarea>
+            <label htmlFor="status">Status</label>            
             <select name='status'>
                 <option value=''>Select a Status Type</option>
                 <option value='To Do'>To Do</option>
@@ -71,7 +83,7 @@ class EditResource extends Component {
                 <option value='Completed'>Completed</option>
             </select>
             <label htmlFor="date-completed">Date Completed</label>            
-            <input type="date" name='date_completed'></input>
+            <input type="date" name='date_completed' defaultValue={r.date_completed}></input>
             <input type='submit'></input>
         </form>
       </div>

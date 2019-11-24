@@ -11,6 +11,10 @@ import Footer from './components/Footer'
 import './App.css';
 import PrivateRoute from './utilities/PrivateRoute'
 import PublicOnlyRoute from './utilities/PublicOnlyRoute'
+import NotFound from './pages/NotFound'
+import TokenService from './services/token-service'
+import Resource from './pages/Resource'
+
 
 class App extends Component {
   constructor(props){
@@ -20,11 +24,18 @@ class App extends Component {
     }
   }
 
+  handleLogout = () => {
+    TokenService.clearAuthToken()
+    this.props.history.push('/')
+  }
+
   render() {
 
     return (
       <main className='App'>
-        <Nav />
+        <Nav 
+          handleLogout={this.handleLogout}
+        />
         <section className='content'>
           <Switch>
             <Route 
@@ -32,7 +43,7 @@ class App extends Component {
               component={Landing}
             />
             <Route 
-              path='/dashboard'
+              exact path='/dashboard'
               render={(props) => (
                 <Dashboard 
                   updateData={this.updateData}
@@ -44,13 +55,12 @@ class App extends Component {
               component={AddResource}
             />
             <PrivateRoute 
-              path='/edit-resource/:id'
-              render={(histoy) => (
-                <EditResource
-                  id={this.state.idToEdit}
-                  history={this.props.history}
-                />
-              )}
+              path='/dashboard/:id/edit'
+              component={EditResource}
+            />
+            <PrivateRoute
+              path='/dashboard/:id'
+              component={Resource}
             />
             <PrivateRoute 
               path={'/account'}
@@ -59,6 +69,9 @@ class App extends Component {
             <PublicOnlyRoute 
               path='/login'
               component={Login}
+            />
+            <Route 
+              component={NotFound}
             />
           </Switch>
         </section>

@@ -6,8 +6,10 @@ const ResourceContext = React.createContext({
     error: null,
     fields: [],
     data: [],
+    resource: [],
     updateId: () => {},
-    setData: () => {}
+    setData: () => {},
+    setResource: () => {}
 })
 
 export default ResourceContext
@@ -18,7 +20,8 @@ export class ResourceProvider extends Component {
         idToUpdate: '',
         error: null,
         fields: [],
-        data: []
+        data: [],
+        resource: []
     }
 
     setData = (data) => {
@@ -26,6 +29,12 @@ export class ResourceProvider extends Component {
           data: data
         })
     }
+
+    setResource = (data) => {
+      this.setState({
+        resource: data
+      })
+  }
 
     updateId = (id) => {
         this.setState({
@@ -40,7 +49,9 @@ export class ResourceProvider extends Component {
             error: this.state.error,
             fields: this.state.fields,
             setData: this.setData,
-            data: this.state.data
+            data: this.state.data,
+            resource: this.state.resource,
+            setResource: this.setResource
         }
         return (
           <ResourceContext.Provider value={value}>

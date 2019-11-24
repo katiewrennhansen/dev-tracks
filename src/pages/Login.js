@@ -5,6 +5,12 @@ import TokenService from '../services/token-service';
 class Login extends Component {
   state = { error: null }
 
+  onLoginSuccess(){
+    const { location, history } = this.props
+    const destination = (location.state || {}).from || '/dashboard'
+    history.push(destination)
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.setState({ error: null })
@@ -20,12 +26,11 @@ class Login extends Component {
         user_name.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
+        this.onLoginSuccess()
       })
       .catch(res => {
         this.setState({ error: res.error })
       })
-      this.props.history.push('/dashboard')
-
   }
 
   render() {
@@ -35,11 +40,12 @@ class Login extends Component {
         <h1>Login</h1>
         <form onSubmit={(e) => this.handleSubmit(e)}>
             <h3>Login to your account to get started tracking</h3>
+            {(this.state.error) && <p className='error'>{this.state.error}</p>}
             <label htmlFor="user_name">Username</label>
             <input type="text" name="user_name" id="username" placeholder="Username"></input>
             <label htmlFor="password">Password</label>            
             <input type="password" name="password" id="password" placeholder="Password"></input>
-            <input type='submit'></input>
+            <button type='submit'>Login</button>
         </form>
       </div>
     );

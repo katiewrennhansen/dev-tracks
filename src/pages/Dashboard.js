@@ -12,6 +12,7 @@ class Dashboard extends Component {
     super(props)
     this.state = {
       active: false,
+      data: []
     }
   }
 
@@ -25,19 +26,21 @@ class Dashboard extends Component {
     ResourceApiService.getData()
       .then(data => {
         this.context.setData(data)
-      }).catch(err => {
+      })
+      .catch(err => {
         console.log(err)
       })
   }
 
   componentDidUpdate(){
-    ResourceApiService.getData()
+      ResourceApiService.getData()
       .then(data => {
         this.context.setData(data)
-      }).catch(err => {
+      })
+      .catch(err => {
         console.log(err)
       })
-  }
+    }
 
   deleteData = (id) => {
     ResourceApiService.deleteData(id)
@@ -51,6 +54,10 @@ class Dashboard extends Component {
         console.log(err)
       })
   }
+
+  componentWillUnmount() {
+    this.context.setData([])
+}
 
   render() {
     return (
@@ -66,24 +73,17 @@ class Dashboard extends Component {
             </div>
             <ul>
               {this.context.data.map(i => (
-                  <li key={i.id} className='resource'>
+                <Link key={i.id} to={`/dashboard/${i.id}`}>
+                  <li className='resource'>
                     <h2>{i.name}</h2>
                     <p>{i.type}</p>
                     <p className={`status completed`}>{i.status}</p>
                     <p className='date-completed'>{i.date_completed}</p>
                     <div className='hidden-content'>
                       <p className='description'>{i.description}</p>
-                      {TokenService.hasAuthToken()
-                        ? (
-                          <div className='actions'>
-                            <Link to={`/edit-resource/${i.id}`} onClick={() => this.context.updateId(i.id)}>Edit</Link>
-                            <button onClick={() => this.deleteData(i.id)}>Delete</button>
-                           </div>
-                        )
-                        : null
-                      } 
                     </div>
-                </li>
+                  </li>
+                </Link>
               ))}    
             </ul>
         </section>
