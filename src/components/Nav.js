@@ -8,6 +8,7 @@ class Nav extends Component {
   renderLogutNav(){
     return (
       <>
+        <li></li>
         <li><Link to='/dashboard'>Demo</Link></li>
         <li><Link to='/login'>Sign In</Link></li>
       </>
@@ -17,6 +18,7 @@ class Nav extends Component {
   renderLoginNav(){
     return (
         <>
+          <li><Link to='/dashboard'>Dashboard</Link></li>
           <li><Link to='/account'>Account</Link></li>
           <li><button onClick={() => this.props.handleLogout()}>Logout</button></li>
         </>

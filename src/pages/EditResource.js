@@ -67,9 +67,14 @@ class EditResource extends Component {
             <select name='type' defaultValue={r.type}>
                 <option value=''>Select a Resource Type</option>
                 <option value='article'>Article</option>
+                <option value='video'>Video</option>
                 <option value='online-class'>Online Class</option>
-                <option value='project'>Project</option>
+                <option value='bootcamp'>Bootcamp</option>
+                <option value='book'>Book</option>
                 <option value='meetup'>Meetup</option>
+                <option value='conference'>Conference</option>
+                <option value='lecture'>Lecture</option>
+                <option value='other'>Other</option>
             </select>
             <label htmlFor="url">Url</label>            
             <input type="text" name="url" id="url" defaultValue={r.url}></input>

@@ -5,26 +5,26 @@ class AddResource extends Component {
 
   addResource = (e) => {
     e.preventDefault()
-    const newResource = {
+    const date = e.target.date_completed.value
+    let newResource = {
       name: e.target.title.value,
       type: e.target.type.value,
       status: e.target.status.value,
       url: e.target.url.value,
       description: e.target.description.value,
-      date_completed: e.target.date_completed.value,
       user_id: 1
     }
+    if(date !== '' && date !== null) {
+      newResource.date_completed = date
+    }
     ResourceApiService.postData(newResource)
-      .then(data => {
-        console.log('added')
-      }).catch(err => {
+      .catch(err => {
         console.log(err)
       })
     this.props.history.push('/dashboard')
   }
 
   render() {
-
     return (
       <div className='add-resource'>
         <h1>Add Resource</h1>
@@ -35,9 +35,14 @@ class AddResource extends Component {
             <select name='type'>
                 <option>Select a Resource Type</option>
                 <option value='article'>Article</option>
+                <option value='video'>Video</option>
                 <option value='online-class'>Online Class</option>
-                <option value='project'>Project</option>
+                <option value='bootcamp'>Bootcamp</option>
+                <option value='book'>Book</option>
                 <option value='meetup'>Meetup</option>
+                <option value='conference'>Conference</option>
+                <option value='lecture'>Lecture</option>
+                <option value='other'>Other</option>
             </select>
             <label htmlFor="url">URL</label>            
             <input type="text" name="url" id="url" placeholder="URL"></input>

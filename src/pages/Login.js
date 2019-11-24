@@ -22,7 +22,6 @@ class Login extends Component {
 
     AuthApiService.postLogin(loginUser)
       .then(res => {
-        console.log(res.authToken)
         user_name.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)

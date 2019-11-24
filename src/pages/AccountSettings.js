@@ -53,6 +53,8 @@ class AccountSettings extends Component {
       .catch(error => {
         console.log(error)
       })
+    e.target.name.value = ''
+    e.target.url.value = ''
   }
 
   submitProject = (e) => {
@@ -62,11 +64,12 @@ class AccountSettings extends Component {
       url: e.target.url.value,
       user_id: 1
     }
-    console.log(newProject)
     ProjectApiService.postProject(newProject)
       .catch(error => {
         console.log(error)
       })
+    e.target.name.value = ''
+    e.target.url.value = ''
   }
 
   deleteAccount(id){
