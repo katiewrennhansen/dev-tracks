@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import Profile from '../components/Profile'
 import ResourceApiService from '../services/resource-api-service'
 import ResourceContext from '../contexts/ResourceContext'
 import TokenService from '../services/token-service'
@@ -15,8 +14,6 @@ class Resource extends Component {
     }
   }
 
-  
-
   componentDidMount(){
     const id = this.props.match.params.id
     ResourceApiService.getResourceById(id)
@@ -26,6 +23,10 @@ class Resource extends Component {
       .catch(err => {
         console.log(err)
       })
+  }
+
+  componentWillUnmount(){
+    this.context.setResource([])
   }
 
 
@@ -47,34 +48,28 @@ class Resource extends Component {
   render() {
     const i = this.context.resource
     return (
-      <div className='dashboard-grid'>
-        <Profile />
-        <section className='resources'>
-            <div key={i.id} className='resource'>
-                <h2>{i.name}</h2>
-                <p>{i.type}</p>
-                <p className={`status completed`}>{i.status}</p>
-                <p className='date-completed'>{i.date_completed}</p>
-                <div className='hidden-content'>
-                    <p className='description'>{i.description}</p>
-                    {TokenService.hasAuthToken()
-                    ? (
-                        <div className='actions'>
-                        <Link to={`/dashboard/${i.id}/edit`}>
-                            <button>Edit</button>
-                        </Link>
-                        <button onClick={() => this.deleteData(i.id)}>Delete</button>
-                        </div>
-                    )
-                    : null
-                    } 
-                </div>
+        <div key={i.id} className='resource'>
+            <h2>{i.name}</h2>
+            <p>{i.type}</p>
+            <p className={`status completed`}>{i.status}</p>
+            <p className='date-completed'>{i.date_completed}</p>
+            <div className='hidden-content'>
+                <p className='description'>{i.description}</p>
+                {TokenService.hasAuthToken()
+                ? (
+                    <div className='actions'>
+                    <Link to={`/dashboard/${i.id}/edit`}>
+                        <button>Edit</button>
+                    </Link>
+                    <button onClick={() => this.deleteData(i.id)}>Delete</button>
+                    </div>
+                )
+                : null
+                } 
             </div>
-        </section>
-      </div>
+        </div>
     );
   }
-  
 }
 
 export default Resource;

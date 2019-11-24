@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
-import EditResource from './pages/EditResource'
-import AddResource from './pages/AddResource'
 import AccountSettings from './pages/AccountSettings'
 import Login from './pages/Login'
 import Nav from './components/Nav'
@@ -13,7 +11,6 @@ import PrivateRoute from './utilities/PrivateRoute'
 import PublicOnlyRoute from './utilities/PublicOnlyRoute'
 import NotFound from './pages/NotFound'
 import TokenService from './services/token-service'
-import Resource from './pages/Resource'
 
 
 class App extends Component {
@@ -43,24 +40,12 @@ class App extends Component {
               component={Landing}
             />
             <Route 
-              exact path='/dashboard'
+              path='/dashboard'
               render={(props) => (
                 <Dashboard 
                   updateData={this.updateData}
                 />
               )}
-            />
-            <PrivateRoute 
-              path='/add-resource'
-              component={AddResource}
-            />
-            <PrivateRoute 
-              path='/dashboard/:id/edit'
-              component={EditResource}
-            />
-            <PrivateRoute
-              path='/dashboard/:id'
-              component={Resource}
             />
             <PrivateRoute 
               path={'/account'}
