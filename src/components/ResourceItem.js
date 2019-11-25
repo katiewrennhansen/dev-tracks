@@ -20,18 +20,21 @@ class ResourceItem extends Component {
         if(date !== null){
             const shortDate = date.split('T')[0]
             const dateArray = shortDate.split('-')
+            const months = ['January','February','March','April', 'May','June','July','August','September', 'October','November','December'];
             let newDate = []
-            newDate[0] = dateArray[1]
+            let formattedDate = []
+            newDate[0] = months[dateArray[1] -1]
             newDate[1] = dateArray[2]
-            newDate[2] = dateArray[0]
-            const formattedDate = newDate.join('-')
-            return formattedDate
-        } 
-    }
+            newDate = newDate.join(' ')
+            formattedDate[0] = newDate
+            formattedDate[1] = dateArray[0]
+            newDate = formattedDate.join(', ')
+            return newDate
+        }
+      }
 
     render() {
         const props = this.props.data
-        this.parseDate(props.date_completed)
         return (
             <Link key={props.id} to={`/dashboard/${props.id}`}>
                 <li className='resource'>

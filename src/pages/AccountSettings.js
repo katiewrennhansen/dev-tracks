@@ -4,6 +4,7 @@ import AddItemForm from '../components/AddItemForm'
 import AccountApiService from '../services/account-api-service'
 import ResourceContext from '../contexts/ResourceContext'
 import ProjectApiService from '../services/project-api-service'
+import UsersApiService from '../services/user-service'
 
 class AccountSettings extends Component {
   static contextType = ResourceContext
@@ -41,6 +42,34 @@ class AccountSettings extends Component {
   //       console.log(error)
   //     })
   // }
+
+  updateUser = (e) => {
+    e.preventDefault()
+    const id = 5
+    const { full_name, email, bio } = e.target
+    let updatedUser = {}
+
+    if(full_name.value !== '' && full_name.value !== null){
+      updatedUser.full_name = full_name.value
+    }
+    if(bio.value !== '' && bio.value !== null){
+      updatedUser.bio = bio.value
+    }
+    if(email.value !== '' && email.value !== null){
+      updatedUser.email = email.value
+    } 
+
+    UsersApiService.updateUser(id, updatedUser)
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    e.target.full_name.value = ''
+    e.target.email.value = ''
+    e.target.bio.value = ''
+  }
 
   postAccount = (e) => {
     e.preventDefault()
@@ -104,14 +133,14 @@ class AccountSettings extends Component {
         <section>
           <h1>Account Settings</h1>
           <button onClick={this.showEditAccountForm}>Edit Account Info</button>
-          <form className='edit-account-form hidden' id='edit-account-form'>
-              <label htmlFor="first">Full Name</label>
+          <form className='edit-account-form hidden' id='edit-account-form' onSubmit={(e) => {this.updateUser(e)}}>
+              <label htmlFor="full_name">Full Name</label>
               <input type="text" name="full_name" id="full_name" placeholder="Full Name"></input>
               <label htmlFor="email">Email</label>
               <input type="email" name="email" id="email" placeholder="Email"></input>
               <label htmlFor="bio">Bio</label>
               <textarea name='bio' id='bio' placeholder='Describe Yourself'></textarea>
-              <Link className='save' to='/dashboard'>Save</Link>
+              <input className='save' type='submit'></input>
           </form>
         </section>
         <section>

@@ -1,9 +1,9 @@
 import config from '../config'
 import TokenService from './token-service'
 
-const ResourceApiService = {
-    getData(){
-        return fetch(`${config.API_ENDPOINT}/resources`,  {
+const UsersApiService = {
+    getUsers(){
+        return fetch(`${config.API_ENDPOINT}/users`,  {
             method: 'GET',
           }).then(res => 
               (!res.ok)
@@ -11,8 +11,8 @@ const ResourceApiService = {
                 : res.json()
           )
     },
-    getDataForUser(user_id){
-        return fetch(`${config.API_ENDPOINT}/resources/user/${user_id}`,  {
+    getUserById(id){
+        return fetch(`${config.API_ENDPOINT}/users/${id}`,  {
             method: 'GET',
           }).then(res => 
               (!res.ok)
@@ -20,17 +20,8 @@ const ResourceApiService = {
                 : res.json()
           )
     },
-    getResourceById(id){
-        return fetch(`${config.API_ENDPOINT}/resources/${id}`,  {
-            method: 'GET',
-          }).then(res => 
-              (!res.ok)
-                ? res.json().then(e => Promise.reject(e))
-                : res.json()
-          )
-    },
-    postData(newResource){
-        return fetch(`${config.API_ENDPOINT}/resources`,  {
+    postUser(newResource){
+        return fetch(`${config.API_ENDPOINT}/users`,  {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -43,8 +34,8 @@ const ResourceApiService = {
                 : res.json()
           )
     },
-    updateData(id, updatedResouce){
-        return fetch(`${config.API_ENDPOINT}/resources/${id}`,  {
+    updateUser(id, updatedResouce){
+        return fetch(`${config.API_ENDPOINT}/users/${id}`,  {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -57,8 +48,8 @@ const ResourceApiService = {
                 : res.json()
           )
     },
-    deleteData(id){
-        return fetch(`${config.API_ENDPOINT}/resources/${id}`,  {
+    deleteUser(id){
+        return fetch(`${config.API_ENDPOINT}/users/${id}`,  {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
@@ -69,7 +60,7 @@ const ResourceApiService = {
                 ? res.json().then(e => Promise.reject(e))
                 : res.json()
           )
-    }
+    },
 }
 
-export default ResourceApiService;
+export default UsersApiService;

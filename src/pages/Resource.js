@@ -20,6 +20,7 @@ class Resource extends Component {
     ResourceApiService.getResourceById(id)
       .then(data => {
         data.date_completed = this.parseDate(data.date_completed)
+        data.date_created = this.parseDate(data.date_created)
         this.context.setResource(data)
       })
       .catch(err => {
@@ -63,13 +64,17 @@ class Resource extends Component {
     if(date !== null){
         const shortDate = date.split('T')[0]
         const dateArray = shortDate.split('-')
+        const months = ['January','February','March','April', 'May','June','July','August','September', 'October','November','December'];
         let newDate = []
-        newDate[0] = dateArray[1]
+        let formattedDate = []
+        newDate[0] = months[dateArray[1] -1]
         newDate[1] = dateArray[2]
-        newDate[2] = dateArray[0]
-        const formattedDate = newDate.join('-')
-        return formattedDate
-    } 
+        newDate = newDate.join(' ')
+        formattedDate[0] = newDate
+        formattedDate[1] = dateArray[0]
+        newDate = formattedDate.join(', ')
+        return newDate
+    }
   }
 
   render() {
@@ -82,6 +87,8 @@ class Resource extends Component {
             <p className='date-completed'>{i.date_completed}</p>
             <div className='hidden-content'>
                 <p className='description'>{i.description}</p>
+            <p className='date-created'>Created On: {i.date_created}</p>
+                
                 {TokenService.hasAuthToken()
                 ? (
                     <div className='actions'>

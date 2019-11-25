@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AccountApiService from '../services/account-api-service'
 import ResourceContext from '../contexts/ResourceContext'
 import ProjectApiService from '../services/project-api-service'
+import UsersApiService from '../services/user-service';
 
 class Profile extends Component {
   static contextType = ResourceContext
@@ -18,22 +19,36 @@ class Profile extends Component {
       .then(data => {
         this.context.setAccounts(data)
       })
+      .catch(err => {
+        console.log(err)
+      })
     ProjectApiService.getProjects()
     .then(data => {
       this.context.setProjects(data)
     })
+    .catch(err => {
+      console.log(err)
+    })
+    UsersApiService.getUserById('5')
+      .then(data => {
+        this.context.setUserData(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   render() {
-
+    const context = this.context
     return (
         <section className='profile'>
-          <h3>User Name</h3>
+          <h3>{context.userData.full_name}</h3>
           <img className='profile-image' src={require('../images/Katie1 copy.jpg')} alt='Katie profile'></img>
+          <p>{context.userData.bio}</p>
           <br></br>
           <div>
             <h4>Linked Accounts</h4>
-            {this.context.accounts.map(a => {
+            {context.accounts.map(a => {
               return (
               <p key={a.id}>
                   <a href={a.url} target='_blank' rel="noopener noreferrer">{a.name}</a>
@@ -44,7 +59,7 @@ class Profile extends Component {
           <br></br>
           <div className='projects'>
             <h4>Projects</h4>
-            {this.context.projects.map(p => {
+            {context.projects.map(p => {
               return (
               <div key={p.id}>
                   <a href={p.url} target='_blank' rel="noopener noreferrer">{p.name}</a>

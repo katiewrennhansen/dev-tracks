@@ -25,6 +25,7 @@ class Login extends Component {
         user_name.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
+        // window.sessionStorage.setItem('id', res.id)
         this.onLoginSuccess()
       })
       .catch(res => {
