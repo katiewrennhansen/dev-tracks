@@ -38,15 +38,15 @@ class Dashboard extends Component {
   }
 
   
-  // componentDidUpdate(){
-  //     ResourceApiService.getData()
-  //       .then(data => {
-  //         this.context.setData(data)
-  //       })
-  //       .catch(err => {
-  //         console.log(err)
-  //       })     
-  // }
+  componentDidUpdate(){
+      ResourceApiService.getData()
+        .then(data => {
+          this.context.setData(data)
+        })
+        .catch(err => {
+          console.log(err)
+        })     
+  }
 
 
   deleteData = (id) => {

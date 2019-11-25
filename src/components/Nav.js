@@ -10,7 +10,7 @@ class Nav extends Component {
       <>
         <li></li>
         <li><Link to='/dashboard'>Demo</Link></li>
-        <li><Link to='/login'>Sign In</Link></li>
+        <li className='log'><Link to='/login'>Sign In</Link></li>
       </>
     )
   }
@@ -20,7 +20,7 @@ class Nav extends Component {
         <>
           <li><Link to='/dashboard'>Dashboard</Link></li>
           <li><Link to='/account'>Account</Link></li>
-          <li><button onClick={() => this.props.handleLogout()}>Logout</button></li>
+          <li className='log'><button onClick={() => this.props.handleLogout()}>Logout</button></li>
         </>
     )
   }
@@ -29,7 +29,7 @@ class Nav extends Component {
     return (
         <nav>
         <div className="nav-container">
-            <Link to='/' className="company-logo">DevTracks</Link>
+            <Link to='/' className="company-logo"><p>Dev</p>Tracks</Link>
             <ul>
               {TokenService.hasAuthToken()
                 ? this.renderLoginNav()

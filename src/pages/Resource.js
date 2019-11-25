@@ -81,7 +81,7 @@ class Resource extends Component {
     const i = this.context.resource
     return (
         <div key={i.id} className='resource'>
-            <h2><a href={i.url} target='_blank' rel="noopener noreferrer" >{i.name}</a></h2>
+            <a href={i.url} target='_blank' rel="noopener noreferrer" ><h2>{i.name}</h2></a>
             <p>{i.type}</p>
             <p className={`status ${this.renderClass(i.status)}`}>{i.status}</p>
             <p className='date-completed'>{i.date_completed}</p>

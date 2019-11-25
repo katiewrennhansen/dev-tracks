@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Baskervville&display=swap');
+
 * {
     box-sizing: border-box;
 }
@@ -8,7 +12,7 @@ body {
 }
 
 nav {
-    background-color: gray;
+    background-color: #3AAFA9;
 }
 
 ul {
@@ -17,23 +21,58 @@ ul {
 }
 
 a {
-    color: black;
+    color: #17252A;
     text-decoration: none;
     transition: 300ms linear;
 }
 
+.profile a:hover {
+    color:white;
+}
+
 nav a:hover,
 nav button:hover {
-    color: rgb(233, 185, 233);
+    color: white;
     transition: 300ms linear;
 }
 
 nav a,
 footer a,
+nav button,
+.landing-content p,
+.landing-content a,
+.resource p,
+.resource a,
+.resources-grid-container a,
+select,
+input,
+.profile p,
+.profile a,
+.resource button,
+label,
+textarea,
+.login-form button,
+footer p,
+.submit button,
+button,
+a {
+    /* font-family: 'Playfair Display', serif;     */
+    font-family: 'Baskerville', serif;    
+}
+
+h1,
+h2,
+h3,
+h4,
+.resource h2 {
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+nav a,
+footer a,
 nav button {
-    color: white;
     font-size: 14px;
-    font-family: sans-serif;
 }
 
 nav button,
@@ -43,13 +82,16 @@ nav button,
 }
 
 h1 {
-    margin: 0 0 30px 0;
+    margin: 0;
+    color: white;
+    letter-spacing: 0.06em;
+    font-size: 35px;
 }
-
 
 h2 {
     margin-bottom: 40px;
 }
+
 
 .nav-container {
     display: grid;
@@ -59,12 +101,32 @@ h2 {
 .company-logo {
     align-self: center;
     padding-left: 20px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.company-logo p {
+    margin: 0;
+}
+
+.log button,
+.log a {
+    background: #17252A;
+    color: white;
+    border: 1px solid #17252A;
+    padding: 2px 12px;
+    border-radius: 50px;
 }
 
 .nav-container ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+    align-items: center;
+}
+
+.resources-grid-container {
+    background: #3AAFA9;
 }
 
 .resources-grid-container select {
@@ -73,12 +135,14 @@ h2 {
 
 .profile-image {
     width: 30%;
+    border-radius: 5px;
 }
 
 .content {
     padding: 50px 20px;
     text-align: center;
     min-height: 100vh;
+    background-color: #3AAFA9;
 }
 
 .landing-content p {
@@ -86,14 +150,14 @@ h2 {
 }
 
 .get-started {
-    border: 1px solid black;
+    border: 1px solid #17252A;
     border-radius: 5px;
     padding: 12px 16px;
     transition: 200ms linear;
 }
 
 .edit-account button {
-    border: 1px solid black;
+    border: 1px solid #17252A;
     border-radius: 5px;
     padding: 8px 14px;
     font-size: 14px;
@@ -106,7 +170,7 @@ h2 {
 .actions button:hover,
 .edit:hover,
 .edit-account button:hover {
-    background: black;
+    background: #17252A;
     color: white;
     transition: 200ms linear;
 }
@@ -118,6 +182,10 @@ h2 {
     padding-top: 50px;
 }
 
+.login-form h1 {
+    padding-bottom: 40px;
+}
+
 .add-resource form,
 .edit-resource form,
 .login-form form,
@@ -125,7 +193,7 @@ h2 {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
-    background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(167,167,167,1) 100%);
+    background: #17252A;
     padding: 25px 12px 30px;
     color: white;
     border-radius: 5px;
@@ -146,6 +214,31 @@ select {
     font-size: 16px;
 }
 
+input[type='submit'],
+.login-form button,
+.submit button {
+    color: #DEF2F1;
+    border: 1px solid #DEF2F1;
+    background: #17252A;
+    transition: 200ms linear;
+}
+
+.login-form button {
+    width: 100%;
+    height: 45px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type='submit']:hover,
+.login-form button:hover,
+.submit button:hover {
+    color: #17252A;
+    background: #DEF2F1;
+    cursor: pointer;
+    transition: 200ms linear;
+}
+
 select {
     border: 1px solid gray;
     appearance: none;
@@ -153,7 +246,7 @@ select {
 
 .save {
     border-radius: 5px;
-    border: 1px solid black;
+    border: 1px solid #17252A;
     padding: 8px 20px;
 }
 
@@ -176,17 +269,24 @@ select {
 
 .resources li,
 .resource {
-    background: rgb(215, 215, 215);
+    background: #FEFFFF;
     padding: 10px 15px 30px;
     margin: 10px 0;
     border-radius: 5px;
     transition: 300ms linear;
+    color: #17252A;
+}
+
+.resource h2 {
+    color: #17252A;
 }
 
 .resources li:hover {
     cursor: pointer;
-    background: rgb(193, 192, 192);
+    background: #DEF2F1;
     transition: 300ms linear;
+    color: #17252A;
+    box-shadow: 2px 2px 4px #2b7a78;
 }
 
 .actions {
@@ -203,7 +303,7 @@ select {
 .actions button,
 .edit {
     align-self: center;
-    border: 1px solid black;
+    border: 1px solid #17252A;
     padding: 8px 15px; 
     max-width: 100px;
     border-radius: 5px;
@@ -240,15 +340,18 @@ form.hidden {
 }
 
 .completed {
-    background: radial-gradient(circle, rgba(167,246,177,1) 0%, rgba(110,203,95,1) 100%);
+    background: #36915f;
+    box-shadow: 1px 1px 2px rgb(223, 223, 223);
 }
 
 .todo {
-    background: yellow;
+    background: #FFE400;
+    box-shadow: 1px 1px 2px rgb(223, 223, 223);
 }
 
 .inprogress {
-    background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(167,167,167,1) 100%);
+    background: rgb(154, 154, 154);
+    box-shadow: 1px 1px 2px rgb(223, 223, 223);
 }
 
 .edit-account section {
@@ -265,9 +368,9 @@ form.hidden {
 
 
 footer {
-    background-color: gray;
+    background-color: #3AAFA9;
     color: white;
-    padding: 40px 0;
+    padding: 20px 0;
     text-align: center;
 }
 
@@ -292,8 +395,8 @@ footer {
         width: 70%;
     }
     .resources {
-        margin-left: 200px;
-        padding: 0 40px;
+        margin-left: 220px;
+        padding: 0 20px 0 40px;
     }
     nav {
         position: fixed;
@@ -303,21 +406,23 @@ footer {
     .profile {
         padding-top: 50px;
         position: fixed;
-        top: 40px;
-        left: 0;
+        top: 95px;
+        left: -10px;
         width: 250px;
         height: 100vh;
         z-index: 10;
+        background: #DEF2F1;
+        border-radius: 5px;
     }
     .resources-grid-container {
-        background: white;
+        background: #3AAFA9;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         position: fixed;
         padding: 30px 60px 20px 10px;
         top: 50px;
-        right: 0;
-        left: 250px;
+        right: -20px;
+        left: 270px;
         z-index: 20;
     }
     .resources-grid-container h2 {
@@ -360,6 +465,9 @@ footer {
         margin: 0;
         align-self: center;
     } 
+    footer {
+        padding-left: 240px;
+    }
 }
 @media (min-width: 1200px) {
     .nav-container {

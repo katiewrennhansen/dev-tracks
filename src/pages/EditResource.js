@@ -56,7 +56,7 @@ class EditResource extends Component {
     const r = this.context.resource
     return (
       <div className='edit-resource'>
-        <h1>Edit Resource</h1>
+        <h2>Edit {r.name}</h2>
         <form onSubmit={(e) => this.updateResource(e)}>
             <label htmlFor="name">Title</label>
             <input type="text" name="name" id="name" defaultValue={r.name}></input>

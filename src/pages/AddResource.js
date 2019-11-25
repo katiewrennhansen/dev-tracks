@@ -27,7 +27,7 @@ class AddResource extends Component {
   render() {
     return (
       <div className='add-resource'>
-        <h1>Add Resource</h1>
+        <h2>Add Resource</h2>
         <form onSubmit={(e) => this.addResource(e)}>
             <label htmlFor="title">Title</label>
             <input type="text" name="title" id="title" placeholder="Title"></input>

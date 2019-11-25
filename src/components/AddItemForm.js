@@ -19,7 +19,9 @@ function AddItemForm(props) {
               )
               : null
             }
+            <div className='submit'>
             <button>Add {props.title}</button>
+            </div>
         </form>
        </>
     );
