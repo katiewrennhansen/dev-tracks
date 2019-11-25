@@ -19,18 +19,41 @@ ul {
 a {
     color: black;
     text-decoration: none;
+    transition: 300ms linear;
+}
+
+nav a:hover,
+nav button:hover {
+    color: rgb(233, 185, 233);
+    transition: 300ms linear;
 }
 
 nav a,
-footer a {
+footer a,
+nav button {
     color: white;
     font-size: 14px;
     font-family: sans-serif;
 }
 
+nav button,
+.edit-account button  {
+    background:none;
+    border: none;
+}
+
+h1 {
+    margin: 0 0 30px 0;
+}
+
+
+h2 {
+    margin-bottom: 40px;
+}
+
 .nav-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr;
 }
 
 .company-logo {
@@ -41,18 +64,15 @@ footer a {
 .nav-container ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-}
-
-h1 {
-    margin: 0 0 30px 0;
+    justify-items: center;
 }
 
 .resource-content {
-    margin-top: 120px;
+    margin-top: 60px;
 }
 
 .profile-image {
-    width: 20%;
+    width: 30%;
 }
 
 .content {
@@ -69,9 +89,23 @@ h1 {
     border: 1px solid black;
     border-radius: 5px;
     padding: 12px 16px;
+    transition: 200ms linear;
 }
 
-.get-started:hover {
+.edit-account button {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 8px 14px;
+    font-size: 14px;
+    margin: 0 5px;
+    transition: 200ms linear;
+}
+
+.get-started:hover,
+.save:hover,
+.actions button:hover,
+.edit:hover,
+.edit-account button:hover {
     background: black;
     color: white;
     transition: 200ms linear;
@@ -100,12 +134,11 @@ h1 {
 
 .add-resource input,
 .add-resource textarea,
-.add-resource select,
 .edit-resource input,
-.edit-resource textarea,
-.edit-resource select,
+textarea,
 .login-form input,
-.edit-account input {
+.edit-account input,
+select {
     padding: 10px 15px;
     width: 100%;
     border-radius: 5px;
@@ -113,8 +146,8 @@ h1 {
     font-size: 16px;
 }
 
-.add-resource select,
-.edit-resource select {
+select {
+    border: 1px solid gray;
     appearance: none;
 }
 
@@ -124,10 +157,6 @@ h1 {
     padding: 8px 20px;
 }
 
-.save:hover {
-    background: black;
-    color: white;
-}
 
 label {
     display: block;
@@ -145,19 +174,23 @@ select {
     padding-bottom: 100px;
 }
 
-.resources li {
+.resources li,
+.resource {
     background: rgb(215, 215, 215);
     padding: 10px 15px 30px;
     margin: 10px 0;
     border-radius: 5px;
+    transition: 300ms linear;
 }
 
 .resources li:hover {
     cursor: pointer;
+    background: rgb(193, 192, 192);
+    transition: 300ms linear;
 }
 
 .actions {
-    width: 50%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -177,12 +210,25 @@ select {
     margin: 0 10px;
 }
 
+
 button:hover {
     cursor: pointer;
 }
 
-.hidden {
-    display: none;
+.edit-account-form {
+    height: auto;
+    opacity: 1;
+}
+
+.hidden  {
+    height: 0px;
+    opacity: 0;
+    margin: 0;
+    padding:0;
+}
+
+form.hidden {
+    margin: 0;
 }
 
 .status {
@@ -204,6 +250,19 @@ button:hover {
 .inprogress {
     background: radial-gradient(circle, rgba(186,186,186,1) 0%, rgba(167,167,167,1) 100%);
 }
+
+.edit-account section {
+    margin-bottom: 40px;
+}
+
+.edit-account h3 {
+    margin-top: 50px;
+}
+
+.edit-account form {
+    margin-top: 30px;
+}
+
 
 footer {
     background-color: gray;

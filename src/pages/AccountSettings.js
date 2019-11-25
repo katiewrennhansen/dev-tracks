@@ -86,32 +86,48 @@ class AccountSettings extends Component {
       })
   }
 
+  showEditAccountForm = () => {
+    document.getElementById('edit-account-form').classList.toggle('hidden')
+  }
+
+  showAddAccount = () => {
+    document.getElementById('add-account-form').classList.toggle('hidden')
+  }
+
+  showAddProject = () => {
+    document.getElementById('add-project-form').classList.toggle('hidden')
+  }
+
   render() {
     return (
       <div className='edit-account'>
-        <h1>Edit Account</h1>
-        <form>
-            <label htmlFor="first">First Name</label>
-            <input type="text" name="first" id="first" placeholder="First Name"></input>
-            <label htmlFor="last">Last Name</label>
-            <input type="text" name="last" id="last" placeholder="Last Name"></input>
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email"></input>
-            <Link className='save' to='/dashboard'>Save</Link>
-        </form>
-
+        <section>
+          <h1>Account Settings</h1>
+          <button onClick={this.showEditAccountForm}>Edit Account Info</button>
+          <form className='edit-account-form hidden' id='edit-account-form'>
+              <label htmlFor="first">Full Name</label>
+              <input type="text" name="full_name" id="full_name" placeholder="Full Name"></input>
+              <label htmlFor="email">Email</label>
+              <input type="email" name="email" id="email" placeholder="Email"></input>
+              <label htmlFor="bio">Bio</label>
+              <textarea name='bio' id='bio' placeholder='Describe Yourself'></textarea>
+              <Link className='save' to='/dashboard'>Save</Link>
+          </form>
+        </section>
         <section>
           <h2>Linked Accounts</h2>
           {this.context.accounts.map(a => {
             return (
             <div key={a.id}>
-              <p>{a.name}</p>
-              <p>{a.url}</p>
+              <h3>{a.name}</h3>
+              <p><a href={a.url}>{a.url}</a></p>
               <button>Edit</button>
               <button onClick={() => this.deleteAccount(a.id)}>Delete</button>
             </div>
           )})}
           <AddItemForm 
+            addItem={this.showAddAccount}
+            id='add-account-form'
             title='Account'
             handleSubmit={this.postAccount}
           />
@@ -121,16 +137,19 @@ class AccountSettings extends Component {
           {this.context.projects.map(p => {
             return (
             <div key={p.id}>
-              <p>{p.name}</p>
-              <p>{p.url}</p>
+              <h3>{p.name}</h3>
+              <p><a href={p.url}>{p.url}</a></p>
               <p>{p.description}</p>
               <button>Edit</button>
               <button onClick={() => this.deleteProject(p.id)}>Delete</button>
             </div>
           )})}
-          <AddItemForm 
+          <AddItemForm
+            addItem={this.showAddProject}
+            id='add-project-form'
             title='Project'
             handleSubmit={this.submitProject}
+            type='project'
           />
         </section>
         

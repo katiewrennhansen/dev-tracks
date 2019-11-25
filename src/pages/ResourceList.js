@@ -111,7 +111,7 @@ class ResourceList extends Component {
       <>
       <div>
         <select name='filter' onChange={this.filterData}>
-          <option value=''>Select Filter Type</option>
+          <option value=''>Filter By</option>
           <option value='date_created'>Most Recent</option>
           <option value='namea-z'>Title (A - Z)</option>
           <option value='namez-a'>Title (Z - A)</option>

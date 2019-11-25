@@ -39,10 +39,7 @@ class EditResource extends Component {
     }
     if(date_completed.value !== '' && date_completed.value !== null){
       updatedResource.date_completed = date_completed.value
-    }
-
-    console.log(updatedResource)
-  
+    }  
     ResourceApiService.updateData(id, updatedResource)
       .then(data => {
         ResourceApiService.getData()
@@ -66,15 +63,15 @@ class EditResource extends Component {
             <label htmlFor="title">Type</label>
             <select name='type' defaultValue={r.type}>
                 <option value=''>Select a Resource Type</option>
-                <option value='article'>Article</option>
-                <option value='video'>Video</option>
-                <option value='online-class'>Online Class</option>
-                <option value='bootcamp'>Bootcamp</option>
-                <option value='book'>Book</option>
-                <option value='meetup'>Meetup</option>
-                <option value='conference'>Conference</option>
-                <option value='lecture'>Lecture</option>
-                <option value='other'>Other</option>
+                <option value='Article'>Article</option>
+                <option value='Video'>Video</option>
+                <option value='Online-Class'>Online Class</option>
+                <option value='Bootcamp'>Bootcamp</option>
+                <option value='Book'>Book</option>
+                <option value='Meetup'>Meetup</option>
+                <option value='Conference'>Conference</option>
+                <option value='Lecture'>Lecture</option>
+                <option value='Other'>Other</option>
             </select>
             <label htmlFor="url">Url</label>            
             <input type="text" name="url" id="url" defaultValue={r.url}></input>

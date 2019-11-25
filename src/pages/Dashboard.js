@@ -17,7 +17,7 @@ class Dashboard extends Component {
     super(props)
     this.state = {
       active: false,
-      data: []
+      data: [],
     }
   }
 
@@ -37,15 +37,17 @@ class Dashboard extends Component {
       })
   }
 
+  
   // componentDidUpdate(){
   //     ResourceApiService.getData()
-  //     .then(data => {
-  //       this.context.setData(data)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  //   }
+  //       .then(data => {
+  //         this.context.setData(data)
+  //       })
+  //       .catch(err => {
+  //         console.log(err)
+  //       })     
+  // }
+
 
   deleteData = (id) => {
     ResourceApiService.deleteData(id)

@@ -7,7 +7,7 @@ class Footer extends Component {
 
     return (
         <footer>
-            <Link to='/'>Company Name</Link>
+            <Link to='/'>DevTracks</Link>
             <p>Created by Katie Hansen</p>
             <a href='https://katiewrennhansen.github.io/'>katiewrennhansen.github.io</a>
         </footer>
