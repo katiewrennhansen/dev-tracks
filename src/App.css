@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Baskervville&display=swap');
 
 * {
@@ -13,6 +12,7 @@ body {
 
 nav {
     background-color: #3AAFA9;
+    padding-top: 10px;
 }
 
 ul {
@@ -56,8 +56,7 @@ footer p,
 .submit button,
 button,
 a {
-    /* font-family: 'Playfair Display', serif;     */
-    font-family: 'Baskerville', serif;    
+    font-family: serif;    
 }
 
 h1,
@@ -114,7 +113,7 @@ h2 {
     background: #17252A;
     color: white;
     border: 1px solid #17252A;
-    padding: 2px 12px;
+    padding: 4px 16px;
     border-radius: 50px;
 }
 
@@ -150,10 +149,21 @@ h2 {
 }
 
 .get-started {
-    border: 1px solid #17252A;
     border-radius: 5px;
     padding: 12px 16px;
     transition: 200ms linear;
+    background: #17252A;
+    color: white;
+}
+
+.get-started:hover {
+    border: 1px solid #17252A;
+    color: #17252A;
+    background: none;
+}
+
+.edit-account h1 {
+    padding: 100px 0 30px;
 }
 
 .edit-account button {
@@ -165,11 +175,34 @@ h2 {
     transition: 200ms linear;
 }
 
-.get-started:hover,
+.account,
+.project {
+    background: #DEF2F1;
+    border-radius: 5px;
+    width: 30%;
+    margin: 20px auto;
+    padding: 30px;
+}
+
+.edit-account .project h3,
+.edit-account .account h3 {
+    margin: 0;
+}
+
+.edit-account .project button,
+.edit-account .account button,
+.edit-account button:hover {
+    background: none;
+    color: #17252A;
+
+} 
+
 .save:hover,
 .actions button:hover,
 .edit:hover,
-.edit-account button:hover {
+.edit-account button,
+.edit-account .account button:hover,
+.edit-account .project button:hover {
     background: #17252A;
     color: white;
     transition: 200ms linear;
@@ -240,14 +273,21 @@ input[type='submit']:hover,
 }
 
 select {
-    border: 1px solid gray;
     appearance: none;
+    box-shadow: 1px 1px 2px gray;
 }
 
 .save {
     border-radius: 5px;
-    border: 1px solid #17252A;
     padding: 8px 20px;
+    background: none;
+    color: #17252A;
+    border: 1px solid #17252A;
+}
+
+.save:hover {
+    background: #17252A;
+    color: white;
 }
 
 
@@ -258,9 +298,11 @@ label {
 }
 
 input,
-select {
+select,
+textarea {
     display: block;
     margin-bottom: 20px;
+    background: #DEF2F1;
 }
 
 .profile {
@@ -269,7 +311,7 @@ select {
 
 .resources li,
 .resource {
-    background: #FEFFFF;
+    background: #DEF2F1;
     padding: 10px 15px 30px;
     margin: 10px 0;
     border-radius: 5px;
@@ -283,10 +325,8 @@ select {
 
 .resources li:hover {
     cursor: pointer;
-    background: #DEF2F1;
     transition: 300ms linear;
-    color: #17252A;
-    box-shadow: 2px 2px 4px #2b7a78;
+    box-shadow: 3px 3px 5px #2b7a78;
 }
 
 .actions {
@@ -385,14 +425,24 @@ footer {
     }
     .company-logo {
         padding-left: 50px;
+        font-size: 18px;
     }
     .nav-container ul {
         justify-items: center;
+    }
+    .nav-container a,
+    .nav-container button {
+        font-size: 16px;        
     }
     .landing-content {
         margin: 0 auto;
         padding-top: 200px;
         width: 70%;
+    }
+    .landing-content p {
+        font-size: 20px;
+        width: 80%;
+        margin: 40px auto 60px;
     }
     .resources {
         margin-left: 220px;
@@ -414,12 +464,15 @@ footer {
         background: #DEF2F1;
         border-radius: 5px;
     }
+    .profile a:hover {
+        color: #3AAFA9;
+    }
     .resources-grid-container {
         background: #3AAFA9;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         position: fixed;
-        padding: 30px 60px 20px 10px;
+        padding: 50px 60px 20px 10px;
         top: 50px;
         right: -20px;
         left: 270px;
@@ -433,40 +486,50 @@ footer {
     select {
         width: 100%;
         grid-column: 1 / 3;
-        margin: 20px 0 0;
-
     }
     .resources-grid-container .save {
         justify-self: flex-end;
     }
     h1 {
-        font-size: 45px;
+        font-size: 50px;
+    }
+    .add-resource form,
+    .edit-resource form,
+    .edit-account form {
+        max-width: 500px;
+        padding: 20px;
     }
     .resource {
         position: relative;
         text-align: left;
     }
+    li.resource {
+        padding: 20px 50px;
+    }
+    .resource {
+        padding: 40px 50px;
+    }
     .resource-content {
-        padding-top: 150px;
+        padding-top: 200px;
     }
     .status {
         position: absolute;
         text-align: center;
-        top: 20px;
-        right: 20px;
+        top: 35px;
+        right: 50px;
     }
     .date-completed {
         position: absolute;
-        top: 45px;
-        right: 22px;
+        top: 60px;
+        right: 50px;
     }
     .actions {
         width: 100%;
         margin: 0;
         align-self: center;
-    } 
-    footer {
-        padding-left: 240px;
+    }
+    .login-form {
+        padding-top: 120px;
     }
 }
 @media (min-width: 1200px) {
@@ -476,4 +539,16 @@ footer {
     .landing-content {
         width: 60%;
     }
+    .edit-account {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .account-settings{
+        grid-column: 1 / 3;
+    }
+    .account,
+    .project {
+        width: 80%;
+    }
+    
 }

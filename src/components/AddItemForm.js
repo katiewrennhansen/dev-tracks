@@ -3,7 +3,6 @@ import React from 'react';
 function AddItemForm(props) {
     return (
         <>
-        <h3>Add {props.title}</h3>
         <button onClick={props.addItem}>Add {props.title}</button>
         <form onSubmit={props.handleSubmit} className='add-item-form hidden' id={props.id}>
             <label htmlFor="name">{props.title} Name</label>            

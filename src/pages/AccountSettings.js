@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import AddItemForm from '../components/AddItemForm'
 import AccountApiService from '../services/account-api-service'
 import ResourceContext from '../contexts/ResourceContext'
@@ -130,7 +129,7 @@ class AccountSettings extends Component {
   render() {
     return (
       <div className='edit-account'>
-        <section>
+        <section className='account-settings'>
           <h1>Account Settings</h1>
           <button onClick={this.showEditAccountForm}>Edit Account Info</button>
           <form className='edit-account-form hidden' id='edit-account-form' onSubmit={(e) => {this.updateUser(e)}}>
@@ -143,11 +142,11 @@ class AccountSettings extends Component {
               <input className='save' type='submit'></input>
           </form>
         </section>
-        <section>
+        <section className='linked-accounts'>
           <h2>Linked Accounts</h2>
           {this.context.accounts.map(a => {
             return (
-            <div key={a.id}>
+            <div className='account' key={a.id}>
               <h3>{a.name}</h3>
               <p><a href={a.url}>{a.url}</a></p>
               <button>Edit</button>
@@ -165,7 +164,7 @@ class AccountSettings extends Component {
           <h2>Linked Projects</h2>
           {this.context.projects.map(p => {
             return (
-            <div key={p.id}>
+            <div className='project' key={p.id}>
               <h3>{p.name}</h3>
               <p><a href={p.url}>{p.url}</a></p>
               <p>{p.description}</p>

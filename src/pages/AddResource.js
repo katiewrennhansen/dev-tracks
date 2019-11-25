@@ -33,7 +33,7 @@ class AddResource extends Component {
             <input type="text" name="title" id="title" placeholder="Title"></input>
             <label htmlFor="title">Type</label>
             <select name='type'>
-                <option>Select a Resource Type</option>
+                <option value=''>Select a Resource Type</option>
                 <option value='Article'>Article</option>
                 <option value='Video'>Video</option>
                 <option value='Online-Class'>Online Class</option>
@@ -50,7 +50,7 @@ class AddResource extends Component {
             <textarea rows="5" cols="20" name='description' placeholder='Add a description here'></textarea>
             <label htmlFor="url">Status</label>            
             <select name='status'>
-                <option>Select a Status Type</option>
+                <option value=''>Select a Status Type</option>
                 <option value='To Do'>To Do</option>
                 <option value='In Progress'>In Progress</option>
                 <option value='Completed'>Completed</option>

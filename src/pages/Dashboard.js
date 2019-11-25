@@ -21,12 +21,6 @@ class Dashboard extends Component {
     }
   }
 
-  openAccordion = () => {
-    this.setState({
-      active: true
-    })
-  }
-
   componentDidMount(){
     ResourceApiService.getData()
       .then(data => {
@@ -36,18 +30,16 @@ class Dashboard extends Component {
         console.log(err)
       })
   }
-
   
-  componentDidUpdate(){
-      ResourceApiService.getData()
-        .then(data => {
-          this.context.setData(data)
-        })
-        .catch(err => {
-          console.log(err)
-        })     
-  }
-
+  // componentDidUpdate(){
+  //     ResourceApiService.getData()
+  //       .then(data => {
+  //         this.context.setData(data)
+  //       })
+  //       .catch(err => {
+  //         console.log(err)
+  //       })     
+  // }
 
   deleteData = (id) => {
     ResourceApiService.deleteData(id)
@@ -145,7 +137,11 @@ class Dashboard extends Component {
         <Profile />
         <section className="resources">
             <div className='resources-grid-container'>
-              <h2>Resources</h2>
+            <h2>
+              <Link to='/dashboard'>
+                <h2>Resources</h2>
+              </Link>
+            </h2>
               {TokenService.hasAuthToken()
                 ? (<Link className='save' to='/dashboard/add-resource'> &#65291; Add Resource</Link>)
                 : null
