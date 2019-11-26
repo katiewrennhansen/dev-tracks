@@ -186,7 +186,8 @@ h2 {
 .project {
     background: #DEF2F1;
     border-radius: 5px;
-    width: 30%;
+    width: 100%;
+    max-width: 400px;
     margin: 20px auto;
     padding: 30px;
 }
@@ -423,6 +424,9 @@ footer {
     text-align: center;
 }
 
+footer.margin {
+    padding-left: 240px;
+}
 
 
 @media (min-width: 768px) {
@@ -539,6 +543,10 @@ footer {
     }
     .login-form {
         padding-top: 120px;
+    }
+    .account,
+    .project {
+        max-width: 450px;
     }
 }
 @media (min-width: 1200px) {

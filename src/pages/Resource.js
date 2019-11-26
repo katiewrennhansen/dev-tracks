@@ -43,9 +43,9 @@ class Resource extends Component {
           })
       })
       .catch(error => {
-        this.setState({ error: error })
+        this.context.setError(error)
       })
-    this.props.history.push('/dashboard')
+      this.props.history.push('/dashboard')
   }
 
   render() {

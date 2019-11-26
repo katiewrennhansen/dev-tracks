@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom'
 class Footer extends Component {
 
   render() {
-
     return (
-        <footer>
+        <footer className={this.props.class}>
             <Link to='/'>DevTracks</Link>
             <p>Created by Katie Hansen</p>
             <a href="https://katiewrennhansen.github.io/">katiewrennhansen.github.io</a>

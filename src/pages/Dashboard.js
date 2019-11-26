@@ -17,8 +17,7 @@ class Dashboard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      error: null,
-      data: [],
+      error: null
     }
     this.filterData = this.filterData.bind(this)
   }
@@ -27,21 +26,12 @@ class Dashboard extends Component {
     ResourceApiService.getData()
       .then(data => {
         this.context.setData(data)
+        this.setState({ data: data })
       })
       .catch(error => {
         this.setState({ error: error })
       })
   }
-  
-  // componentDidUpdate(){
-  //     ResourceApiService.getData()
-  //       .then(data => {
-  //         this.context.setData(data)
-  //       })
-  //       .catch(err => {
-  //         console.log(err)
-  //       })     
-  // }
 
   componentWillUnmount() {
     this.context.setData([])
@@ -50,7 +40,7 @@ class Dashboard extends Component {
   filterData = (e) => {
     e.preventDefault()
     const value = e.target.value
-
+    
     if(value === 'namea-z'){
       this.context.setData(FunctionService.sortAtoZ(this.context.data))
     }
@@ -98,14 +88,18 @@ class Dashboard extends Component {
               <Route 
                 exact path='/dashboard'
                 component={ResourceList}
+                updateComponent={this.updateComponent}
               />
              <PrivateRoute
                 path='/dashboard/add-resource'
                 component={AddResource}
+                updateComponent={this.updateComponent}
+
               />
               <PrivateRoute 
                 path='/dashboard/:id/edit'
                 component={EditResource}
+                updateComponent={this.updateComponent}
               />
               <Route
                 path='/dashboard/:id'

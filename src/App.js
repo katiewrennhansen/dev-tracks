@@ -60,7 +60,10 @@ class App extends Component {
             />
           </Switch>
         </section>
-        <Footer />
+        { (this.props.history.location.pathname === '/dashboard') 
+          ? <Footer class='margin' />
+          : <Footer class='' />                
+        }
       </main>
     );
   }

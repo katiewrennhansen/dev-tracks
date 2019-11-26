@@ -10,11 +10,15 @@ const ResourceContext = React.createContext({
     accounts: [],
     propjects: [],
     userData: [],
+    update: false,
     updateId: () => {},
     setData: () => {},
     setResource: () => {},
     setAccounts: () => {},
-    setProjects: () => {}
+    setProjects: () => {},
+    setError: () => {},
+    setUpdate: () => {},
+    addData: () => {}
 })
 
 export default ResourceContext
@@ -29,7 +33,16 @@ export class ResourceProvider extends Component {
         resource: [],
         accounts: [],
         projects: [],
-        userData: []
+        userData: [],
+        update: false
+    }
+
+    setError = error => {
+      this.setState({ error })
+    }
+
+    setUpdate = update => {
+      this.setState({ update })
     }
 
     setData = (data) => {
@@ -66,7 +79,14 @@ export class ResourceProvider extends Component {
         this.setState({
           idToEdit: id
         })
-      }
+    }
+
+    addData = data => {
+      this.setData([
+        ...this.state.data,
+        data
+      ])
+    }
 
     render() {
         const value = {
@@ -83,7 +103,11 @@ export class ResourceProvider extends Component {
             projects: this.state.projects,
             setProjects: this.setProjects,
             userData: this.state.userData,
-            setUserData: this.setUserData
+            setUserData: this.setUserData,
+            setError: this.setError,
+            update: this.state.update,
+            setUpdate: this.setUpdate,
+            addData: this.addData
         }
         return (
           <ResourceContext.Provider value={value}>

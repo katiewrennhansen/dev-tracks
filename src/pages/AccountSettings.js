@@ -16,7 +16,7 @@ class AccountSettings extends Component {
     this.showForm = this.showForm.bind(this)
     this.deleteAccount = this.deleteAccount.bind(this)
     this.deleteProject = this.deleteProject.bind(this)
-    this.submitProject = this.submitProject.bind(this)
+    this.postProject = this.postProject.bind(this)
     this.postAccount = this.postAccount.bind(this)
     this.updateUser = this.updateUser.bind(this)
   }
@@ -27,34 +27,16 @@ class AccountSettings extends Component {
         this.context.setAccounts(data)
       })
       .catch(error => {
-        this.setState({error: error})
+        console.log(error)
       })
     ProjectApiService.getProjects()
     .then(data => {
       this.context.setProjects(data)
     })
     .catch(error => {
-        this.setState({error: error})
-      console.log(error)
+      console.log(error)              
     })
   }
-
-  // componentDidUpdate(){
-  //   AccountApiService.getAccounts()
-  //     .then(data => {
-  //       this.context.setAccounts(data)
-  //     })
-  //     .catch(error => {
-  //       console.log(error)
-  //     })
-  //   ProjectApiService.getProjects()
-  //     .then(data => {
-  //       this.context.setProjects(data)
-  //     })
-  //     .catch(error => {
-  //       console.log(error)
-  //     })
-  // }
 
   updateUser = (e) => {
     e.preventDefault()
@@ -74,7 +56,7 @@ class AccountSettings extends Component {
 
     UsersApiService.updateUser(id, updatedUser)
       .catch(error => {
-        this.setState({ error: error })
+        console.log(error)               
       })
     e.target.full_name.value = ''
     e.target.email.value = ''
@@ -86,42 +68,44 @@ class AccountSettings extends Component {
     const newAccount = {
       name: e.target.name.value,
       url: e.target.url.value,
-      user_id: 1
+      user_id: 5
     }
     AccountApiService.postAccount(newAccount)
       .catch(error => {
-        this.setState({ error: error })
+        console.log(error)
       })
     e.target.name.value = ''
     e.target.url.value = ''
   }
 
-  submitProject = (e) => {
+  postProject = (e) => {
     e.preventDefault()
     const newProject = {
       name: e.target.name.value,
       url: e.target.url.value,
-      user_id: 1
+      description: e.target.description.value,
+      user_id: 5
     }
     ProjectApiService.postProject(newProject)
       .catch(error => {
-        this.setState({ error: error })
+        console.log(error)
       })
     e.target.name.value = ''
     e.target.url.value = ''
+    e.target.description.value = ''
   }
 
   deleteAccount(id){
     AccountApiService.deleteAccount(id)
       .catch(error => {
-        this.setState({ error: error })        
+        console.log(error)        
       })
   }
 
   deleteProject(id){
     ProjectApiService.deleteProject(id)
       .catch(error => {
-        this.setState({ error: error })        
+        console.log(error)
       })
   }
 
@@ -134,7 +118,7 @@ class AccountSettings extends Component {
       <div className="edit-account">
         <section className="account-settings">
           <h1>Account Settings</h1>
-          {(this.state.error) && <p className="error">{this.state.error}</p>}
+          {(this.context.error) && <p className="error">{this.context.error}</p>}
           <button onClick={() => this.showForm('edit-account-form')}>Edit Account Info</button>
           <form className="edit-account-form hidden" id="edit-account-form" onSubmit={(e) => {this.updateUser(e)}}>
               <label htmlFor="full_name">Full Name</label>
@@ -185,7 +169,7 @@ class AccountSettings extends Component {
             addItem={this.showForm}
             id="add-project-form"
             title="Project"
-            handleSubmit={this.submitProject}
+            handleSubmit={this.postProject}
             type="project"
           />
         </section>

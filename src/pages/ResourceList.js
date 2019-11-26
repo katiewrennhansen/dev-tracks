@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ResourceContext from '../contexts/ResourceContext'
 import ResourceItem from '../components/ResourceItem'
+// import ResourceApiService from '../services/resource-api-service'
 
 class ResourceList extends Component {
   static contextType = ResourceContext

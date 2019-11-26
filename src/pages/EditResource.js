@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import ResourceApiService from '../services/resource-api-service'
 import ResourceContext from '../contexts/ResourceContext'
 
@@ -8,7 +9,8 @@ class EditResource extends Component {
   constructor(props){
     super(props)
     this.state = {
-      error: null
+      error: null,
+      redirect: false
     }
     this.updateResource = this.updateResource.bind(this)
   }
@@ -47,35 +49,54 @@ class EditResource extends Component {
     }
     if(date_completed.value !== '' && date_completed.value !== null){
       updatedResource.date_completed = date_completed.value
-    } 
+    }
 
     ResourceApiService.updateData(id, updatedResource)
       .then(data => {
         ResourceApiService.getData()
           .then(data => {
+            this.props.history.push(`/dashboard/${id}`)
             this.context.setData(data)
+            this.props.updatedComponent(data)
           })
       }).catch(error => {
-        this.setState({ error: error })
+        this.context.setError(error)
       })
-    this.props.history.push('/dashboard')
+
+      this.setState({ redirect: true})
+
+  }
+
+
+  renderRedirect = () => {
+    const id = this.props.match.params.id
+
+    if (this.state.redirect) {
+      return <Redirect to={`/dashboard/${id}`} />
+    }
   }
 
   render() {
     const r = this.context.resource
     return (
         <div className="edit-resource">
-        <form onSubmit={(e) => this.props.handleSubmit(e)}>
+          {this.renderRedirect()}
+        <form onSubmit={(e) => this.updateResource(e)}>
           <h2>Edit {r.name}</h2>
           <label htmlFor="name">Title</label>
           <input type="text" name="name" id="name" defaultValue={r.name}></input>
           <label htmlFor="title">Type</label>
-          <select name="type">
-              <option value="">Select a Resource Type</option>
-              <option value="article">Article</option>
-              <option value="online-class">Online Class</option>
-              <option value="project">Project</option>
-              <option value="meetup">Meetup</option>
+          <select defaultValue={r.type} name="type">
+            <option value=''>Select a Resource Type</option>
+            <option value='Article'>Article</option>
+            <option value='Video'>Video</option>
+            <option value='Online-Class'>Online Class</option>
+            <option value='Bootcamp'>Bootcamp</option>
+            <option value='Book'>Book</option>
+            <option value='Meetup'>Meetup</option>
+            <option value='Conference'>Conference</option>
+            <option value='Lecture'>Lecture</option>
+            <option value='Other'>Other</option>
           </select>
           <label htmlFor="url">Url</label>            
           <input type="text" name="url" id="url" defaultValue={r.url}></input>
