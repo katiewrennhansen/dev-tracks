@@ -141,7 +141,7 @@ class AccountSettings extends Component {
                 <p>
                   <a href={a.url}>{a.url}</a>
                 </p>
-                <button onClick={() => this.deleteAccount(a.id)}>Delete</button>
+                <button onClick={() => this.deleteAccount(a.id)}>&#x2718;</button>
               </div>
           )})}
           <AddItemForm 
@@ -161,7 +161,7 @@ class AccountSettings extends Component {
                 <a href={p.url}>{p.url}</a>
               </p>
               <p>{p.description}</p>
-              <button onClick={() => this.deleteProject(p.id)}>Delete</button>
+              <button onClick={() => this.deleteProject(p.id)}>&#x2718;</button>
             </div>
           )})}
           <AddItemForm
