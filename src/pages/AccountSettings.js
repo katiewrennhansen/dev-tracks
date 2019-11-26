@@ -21,7 +21,6 @@ class AccountSettings extends Component {
     this.postProject = this.postProject.bind(this)
     this.postAccount = this.postAccount.bind(this)
     this.updateUser = this.updateUser.bind(this)
-    this.updateAccount = this.updateAccount.bind(this)
   }
 
   componentDidMount(){
@@ -98,30 +97,6 @@ class AccountSettings extends Component {
     e.target.description.value = ''
   }
 
-  updateAccount = (e) => {
-    e.preventDefault()
-    const { name, url } = e.target
-    let updatedAccount = {}
-    const id = this.state.toedit.id
-
-    if(name.value !== '' && name.value !== null){
-      updatedAccount.name = name.value
-    }
-    if(url.value !== '' && url.value !== null){
-      updatedAccount.url = url.value
-    }
-    updatedAccount.user_id = this.context.user_id
-  
-    console.log(updatedAccount, id)
-
-    AccountApiService.updateAccount(id, updatedAccount)
-      .catch(error => {
-        console.log(error)
-      })
-    e.target.name.value = ''
-    e.target.url.value = ''
-  }
-
   deleteAccount(id){
     AccountApiService.deleteAccount(id)
       .catch(error => {
@@ -138,24 +113,6 @@ class AccountSettings extends Component {
 
   showForm = (id) => {
     document.getElementById(id).classList.toggle('hidden')
-  }
-
-  renderEditForm(){
-    const e = this.state.toedit
-    return (
-      <>
-      <form className='add-item-form' onSubmit={() => this.updateAccount(e)} id={e.id}>
-        <label htmlFor="name">Name</label>            
-        <input type="text" name="name" id="name" defaultValue={e.name}></input>
-        <label htmlFor="url">URL</label>  
-        <input type="text" name="url" id="url" defaultValue={e.url}></input>
-        <div className="submit">
-          <button>Update {e.name}</button>
-        </div>
-    </form>
-          <button onClick={() => this.setState({ edit: false })}>Cancel</button>
-</>
-    )
   }
 
   render() {
@@ -184,14 +141,9 @@ class AccountSettings extends Component {
                 <p>
                   <a href={a.url}>{a.url}</a>
                 </p>
-                {/* <button onClick={() => this.setState({ toedit: a, edit: true })}>Edit</button> */}
                 <button onClick={() => this.deleteAccount(a.id)}>Delete</button>
               </div>
           )})}
-          {(this.state.edit)
-            ? this.renderEditForm()
-            : null
-          }
           <AddItemForm 
             addItem={this.showForm}
             id="add-account-form"
@@ -209,7 +161,6 @@ class AccountSettings extends Component {
                 <a href={p.url}>{p.url}</a>
               </p>
               <p>{p.description}</p>
-              <button>Edit</button>
               <button onClick={() => this.deleteProject(p.id)}>Delete</button>
             </div>
           )})}
