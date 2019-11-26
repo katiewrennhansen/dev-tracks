@@ -59,9 +59,6 @@ class AccountSettings extends Component {
     } 
 
     UsersApiService.updateUser(id, updatedUser)
-      .then(data => {
-        console.log(data)
-      })
       .catch(error => {
         console.log(error)
       })
@@ -133,11 +130,11 @@ class AccountSettings extends Component {
           <h1>Account Settings</h1>
           <button onClick={this.showEditAccountForm}>Edit Account Info</button>
           <form className='edit-account-form hidden' id='edit-account-form' onSubmit={(e) => {this.updateUser(e)}}>
-              <label htmlFor="full_name">Full Name</label>
-              <input type="text" name="full_name" id="full_name" placeholder="Full Name"></input>
+              <label htmlFor='full_name'>Full Name</label>
+              <input type='text' name='full_name' id='full_name' placeholder='Full Name'></input>
               <label htmlFor="email">Email</label>
-              <input type="email" name="email" id="email" placeholder="Email"></input>
-              <label htmlFor="bio">Bio</label>
+              <input type='email' name='email' id='email' placeholder='Email'></input>
+              <label htmlFor='bio'>Bio</label>
               <textarea name='bio' id='bio' placeholder='Describe Yourself'></textarea>
               <input className='save' type='submit'></input>
           </form>
@@ -180,7 +177,6 @@ class AccountSettings extends Component {
             type='project'
           />
         </section>
-        
       </div>
     );
   }

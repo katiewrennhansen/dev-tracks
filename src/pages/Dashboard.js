@@ -9,6 +9,7 @@ import AddResource from '../pages/AddResource'
 import EditResource from '../pages/EditResource'
 import Resource from '../pages/Resource'
 import ResourceList from '../pages/ResourceList'
+import FunctionService from '../services/function-service'
 
 class Dashboard extends Component {
   static contextType = ResourceContext
@@ -59,36 +60,6 @@ class Dashboard extends Component {
   }
 
 
-  sortAtoZ = (data) => {
-    return data.sort((a, b) => {
-      if((a.name).toLowerCase() < (b.name).toLowerCase())
-        return -1
-      if((a.name).toLowerCase() > (b.name).toLowerCase())
-        return 1
-      return 0
-    })
-  }
-
-  sortZtoA = (data) => {
-    return data.sort((a, b) => {
-      if((a.name).toLowerCase() > (b.name).toLowerCase())
-        return -1
-      if((a.name).toLowerCase() < (b.name).toLowerCase())
-        return 1
-      return 0
-    })
-  }
-
-  sortDate = (data) => {
-    return data.sort((a, b) => {
-      if(a.date_created > b.date_created)
-        return -1
-      if(a.date_created < b.date_created)
-        return 1
-      return 0
-    })
-  }
-
   filterData = (e) => {
     e.preventDefault()
     const value = e.target.value
@@ -96,7 +67,7 @@ class Dashboard extends Component {
     if(value === 'namea-z'){
       ResourceApiService.getData()
       .then(data => {
-        this.context.setData(this.sortAtoZ(data))
+        this.context.setData(FunctionService.sortAtoZ(data))
       })
       .catch(err => {
         console.log(err)
@@ -105,7 +76,7 @@ class Dashboard extends Component {
     if(value === 'namez-a'){
       ResourceApiService.getData()
       .then(data => {
-        this.context.setData(this.sortZtoA(data))
+        this.context.setData(FunctionService.sortZtoA(data))
       })
       .catch(err => {
         console.log(err)
@@ -114,7 +85,7 @@ class Dashboard extends Component {
     if(value === 'date_created'){
       ResourceApiService.getData()
       .then(data => {
-        this.context.setData(this.sortDate(data))
+        this.context.setData(FunctionService.sortDate(data))
       })
       .catch(err => {
         console.log(err)
@@ -135,7 +106,7 @@ class Dashboard extends Component {
     return (
       <div className='dashboard-grid'>
         <Profile />
-        <section className="resources">
+        <section className='resources'>
             <div className='resources-grid-container'>
             <h2>
               <Link to='/dashboard'>
@@ -167,7 +138,7 @@ class Dashboard extends Component {
                 path='/dashboard/:id/edit'
                 component={EditResource}
               />
-              <PrivateRoute
+              <Route
                 path='/dashboard/:id'
                 component={Resource}
               />

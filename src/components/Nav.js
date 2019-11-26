@@ -28,8 +28,8 @@ class Nav extends Component {
   render() {
     return (
         <nav>
-        <div className="nav-container">
-            <Link to='/' className="company-logo"><p>Dev</p>Tracks</Link>
+        <div className='nav-container'>
+            <Link to='/' className='company-logo'><p>Dev</p>Tracks</Link>
             <ul>
               {TokenService.hasAuthToken()
                 ? this.renderLoginNav()

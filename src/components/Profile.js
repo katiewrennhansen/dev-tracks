@@ -29,7 +29,7 @@ class Profile extends Component {
     .catch(err => {
       console.log(err)
     })
-    UsersApiService.getUserById('1')
+    UsersApiService.getUserById('5')
       .then(data => {
         this.context.setUserData(data)
       })
@@ -51,7 +51,7 @@ class Profile extends Component {
             {context.accounts.map(a => {
               return (
               <p key={a.id}>
-                  <a href={a.url} target='_blank' rel="noopener noreferrer">{a.name}</a>
+                  <a href={a.url} target='_blank' rel='noopener noreferrer'>{a.name}</a>
               </p>
               )
             })}
@@ -62,7 +62,7 @@ class Profile extends Component {
             {context.projects.map(p => {
               return (
               <div key={p.id}>
-                  <a href={p.url} target='_blank' rel="noopener noreferrer">{p.name}</a>
+                  <a href={p.url} target='_blank' rel='noopener noreferrer'>{p.name}</a>
                   <p>{p.description}</p>
               </div>
               )

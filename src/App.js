@@ -27,7 +27,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <main className='App'>
         <Nav 
@@ -64,7 +63,6 @@ class App extends Component {
       </main>
     );
   }
-  
 }
 
 export default withRouter(App);

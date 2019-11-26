@@ -29,9 +29,9 @@ class AddResource extends Component {
       <div className='add-resource'>
         <h2>Add Resource</h2>
         <form onSubmit={(e) => this.addResource(e)}>
-            <label htmlFor="title">Title</label>
-            <input type="text" name="title" id="title" placeholder="Title"></input>
-            <label htmlFor="title">Type</label>
+            <label htmlFor='title'>Title</label>
+            <input type='text' name='title' id='title' placeholder='Title'></input>
+            <label htmlFor='title'>Type</label>
             <select name='type'>
                 <option value=''>Select a Resource Type</option>
                 <option value='Article'>Article</option>
@@ -44,19 +44,19 @@ class AddResource extends Component {
                 <option value='Lecture'>Lecture</option>
                 <option value='Other'>Other</option>
             </select>
-            <label htmlFor="url">URL</label>            
-            <input type="text" name="url" id="url" placeholder="URL"></input>
-            <label htmlFor="description">Description</label>            
-            <textarea rows="5" cols="20" name='description' placeholder='Add a description here'></textarea>
-            <label htmlFor="url">Status</label>            
+            <label htmlFor='url'>URL</label>            
+            <input type='text' name='url' id='url' placeholder='URL'></input>
+            <label htmlFor='description'>Description</label>            
+            <textarea rows='5' cols='20' name='description' placeholder='Add a description here'></textarea>
+            <label htmlFor='url'>Status</label>            
             <select name='status'>
                 <option value=''>Select a Status Type</option>
                 <option value='To Do'>To Do</option>
                 <option value='In Progress'>In Progress</option>
                 <option value='Completed'>Completed</option>
             </select>
-            <label htmlFor="date-completed">Date Completed</label>            
-            <input type="date" name='date_completed'></input>
+            <label htmlFor='date-completed'>Date Completed</label>            
+            <input type='date' name='date_completed'></input>
             <input type='submit'></input>
         </form>
       </div> 

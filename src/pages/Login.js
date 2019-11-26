@@ -25,7 +25,6 @@ class Login extends Component {
         user_name.value = ''
         password.value = ''
         TokenService.saveAuthToken(res.authToken)
-        // window.sessionStorage.setItem('id', res.id)
         this.onLoginSuccess()
       })
       .catch(res => {
@@ -41,10 +40,10 @@ class Login extends Component {
         <form onSubmit={(e) => this.handleSubmit(e)}>
             <h3>Login to your account to get started tracking</h3>
             {(this.state.error) && <p className='error'>{this.state.error}</p>}
-            <label htmlFor="user_name">Username</label>
-            <input type="text" name="user_name" id="username" placeholder="Username"></input>
-            <label htmlFor="password">Password</label>            
-            <input type="password" name="password" id="password" placeholder="Password"></input>
+            <label htmlFor='user_name'>Username</label>
+            <input type='text' name='user_name' id='username' placeholder='Username'></input>
+            <label htmlFor='password'>Password</label>            
+            <input type='password' name='password' id='password' placeholder='Password'></input>
             <button type='submit'>Login</button>
         </form>
       </div>

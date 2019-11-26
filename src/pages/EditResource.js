@@ -58,9 +58,9 @@ class EditResource extends Component {
       <div className='edit-resource'>
         <h2>Edit {r.name}</h2>
         <form onSubmit={(e) => this.updateResource(e)}>
-            <label htmlFor="name">Title</label>
-            <input type="text" name="name" id="name" defaultValue={r.name}></input>
-            <label htmlFor="title">Type</label>
+            <label htmlFor='name'>Title</label>
+            <input type='text' name='name' id='name' defaultValue={r.name}></input>
+            <label htmlFor='title'>Type</label>
             <select name='type' defaultValue={r.type}>
                 <option value=''>Select a Resource Type</option>
                 <option value='Article'>Article</option>
@@ -73,19 +73,19 @@ class EditResource extends Component {
                 <option value='Lecture'>Lecture</option>
                 <option value='Other'>Other</option>
             </select>
-            <label htmlFor="url">Url</label>            
-            <input type="text" name="url" id="url" defaultValue={r.url}></input>
-            <label htmlFor="url">Description</label>            
-            <textarea rows="5" cols="20" name='description' defaultValue={r.description}></textarea>
-            <label htmlFor="status">Status</label>            
+            <label htmlFor='url'>Url</label>            
+            <input type='text' name='url' id='url' defaultValue={r.url}></input>
+            <label htmlFor='url'>Description</label>            
+            <textarea rows='5' cols='20' name='description' defaultValue={r.description}></textarea>
+            <label htmlFor='status'>Status</label>            
             <select name='status'>
                 <option value=''>Select a Status Type</option>
                 <option value='To Do'>To Do</option>
                 <option value='In Progress'>In Progress</option>
                 <option value='Completed'>Completed</option>
             </select>
-            <label htmlFor="date-completed">Date Completed</label>            
-            <input type="date" name='date_completed' defaultValue={r.date_completed}></input>
+            <label htmlFor='date-completed'>Date Completed</label>            
+            <input type='date' name='date_completed' defaultValue={r.date_completed}></input>
             <input type='submit'></input>
         </form>
       </div>
