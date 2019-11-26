@@ -40,7 +40,6 @@ nav a,
 footer a,
 nav button,
 .landing-content p,
-.landing-content a,
 .resource p,
 .resource a,
 .resources-grid-container a,
@@ -51,7 +50,6 @@ input,
 .resource button,
 label,
 textarea,
-.login-form button,
 footer p,
 .submit button,
 button,
@@ -63,7 +61,9 @@ h1,
 h2,
 h3,
 h4,
-.resource h2 {
+.resource h2,
+.landing-content a,
+.login-form button {
     font-family: 'Montserrat', sans-serif;
     
 }
@@ -114,7 +114,7 @@ h2 {
     color: white;
     border: 1px solid #17252A;
     padding: 4px 16px;
-    border-radius: 50px;
+    border-radius: 5px;
 }
 
 .nav-container ul {
@@ -130,6 +130,13 @@ h2 {
 
 .resources-grid-container select {
     margin-top: 30px;
+    box-shadow: 2px 2px 3px #2b7a78;
+}
+
+.profile {
+    background: #DEF2F1;
+    border-radius: 5px;
+    padding-top: 30px;
 }
 
 .profile-image {
@@ -227,7 +234,7 @@ h2 {
     max-width: 400px;
     margin: 0 auto;
     background: #17252A;
-    padding: 25px 12px 30px;
+    padding: 25px 20px 30px;
     color: white;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgb(181, 181, 181);
@@ -240,15 +247,16 @@ textarea,
 .login-form input,
 .edit-account input,
 select {
-    padding: 10px 15px;
+    padding: 10px 12px;
     width: 100%;
     border-radius: 5px;
     border: none;
     font-size: 16px;
+    background: #DEF2F1;
 }
 
 input[type='submit'],
-.login-form button,
+.login-form button:hover,
 .submit button {
     color: #DEF2F1;
     border: 1px solid #DEF2F1;
@@ -258,13 +266,14 @@ input[type='submit'],
 
 .login-form button {
     width: 100%;
-    height: 45px;
+    height: 40px;
     border-radius: 5px;
     font-size: 16px;
+    margin-top: 10px;
 }
 
 input[type='submit']:hover,
-.login-form button:hover,
+.login-form button,
 .submit button:hover {
     color: #17252A;
     background: #DEF2F1;
@@ -326,7 +335,7 @@ textarea {
 .resources li:hover {
     cursor: pointer;
     transition: 300ms linear;
-    box-shadow: 3px 3px 5px #2b7a78;
+    box-shadow: 4px 4px 6px #2b7a78;
 }
 
 .actions {
@@ -380,17 +389,17 @@ form.hidden {
 }
 
 .completed {
-    background: #36915f;
+    background: #18d56d;
     box-shadow: 1px 1px 2px rgb(223, 223, 223);
 }
 
 .todo {
-    background: #FFE400;
+    background: rgb(255, 0, 0);
     box-shadow: 1px 1px 2px rgb(223, 223, 223);
 }
 
 .inprogress {
-    background: rgb(154, 154, 154);
+    background: rgb(230, 176, 0);
     box-shadow: 1px 1px 2px rgb(223, 223, 223);
 }
 

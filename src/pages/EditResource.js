@@ -39,7 +39,8 @@ class EditResource extends Component {
     }
     if(date_completed.value !== '' && date_completed.value !== null){
       updatedResource.date_completed = date_completed.value
-    }  
+    } 
+
     ResourceApiService.updateData(id, updatedResource)
       .then(data => {
         ResourceApiService.getData()
@@ -55,38 +56,33 @@ class EditResource extends Component {
   render() {
     const r = this.context.resource
     return (
-      <div className='edit-resource'>
-        <h2>Edit {r.name}</h2>
-        <form onSubmit={(e) => this.updateResource(e)}>
-            <label htmlFor='name'>Title</label>
-            <input type='text' name='name' id='name' defaultValue={r.name}></input>
-            <label htmlFor='title'>Type</label>
-            <select name='type' defaultValue={r.type}>
-                <option value=''>Select a Resource Type</option>
-                <option value='Article'>Article</option>
-                <option value='Video'>Video</option>
-                <option value='Online-Class'>Online Class</option>
-                <option value='Bootcamp'>Bootcamp</option>
-                <option value='Book'>Book</option>
-                <option value='Meetup'>Meetup</option>
-                <option value='Conference'>Conference</option>
-                <option value='Lecture'>Lecture</option>
-                <option value='Other'>Other</option>
-            </select>
-            <label htmlFor='url'>Url</label>            
-            <input type='text' name='url' id='url' defaultValue={r.url}></input>
-            <label htmlFor='url'>Description</label>            
-            <textarea rows='5' cols='20' name='description' defaultValue={r.description}></textarea>
-            <label htmlFor='status'>Status</label>            
-            <select name='status'>
-                <option value=''>Select a Status Type</option>
-                <option value='To Do'>To Do</option>
-                <option value='In Progress'>In Progress</option>
-                <option value='Completed'>Completed</option>
-            </select>
-            <label htmlFor='date-completed'>Date Completed</label>            
-            <input type='date' name='date_completed' defaultValue={r.date_completed}></input>
-            <input type='submit'></input>
+        <div className='edit-resource'>
+        <form onSubmit={(e) => this.props.handleSubmit(e)}>
+          <h2>Edit {r.name}</h2>
+          <label htmlFor="name">Title</label>
+          <input type="text" name="name" id="name" defaultValue={r.name}></input>
+          <label htmlFor="title">Type</label>
+          <select name="type">
+              <option value="">Select a Resource Type</option>
+              <option value="article">Article</option>
+              <option value="online-class">Online Class</option>
+              <option value="project">Project</option>
+              <option value="meetup">Meetup</option>
+          </select>
+          <label htmlFor="url">Url</label>            
+          <input type="text" name="url" id="url" defaultValue={r.url}></input>
+          <label htmlFor="url">Description</label>            
+          <textarea rows="5" cols="20" name="description" defaultValue={r.description}></textarea>
+          <label htmlFor="url">Status</label>            
+          <select name="status">
+              <option value="">Select a Status Type</option>
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+          </select>
+          <label htmlFor="date-completed">Date Completed</label>            
+          <input type="date" name="date_completed" defaultValue={r.date_completed}></input>
+          <input type="submit"></input>
         </form>
       </div>
     );
