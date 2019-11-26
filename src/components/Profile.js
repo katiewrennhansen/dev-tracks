@@ -7,13 +7,6 @@ import UsersApiService from '../services/user-service';
 class Profile extends Component {
   static contextType = ResourceContext
 
-  constructor(props){
-    super(props)
-    this.state = {
-      active: false
-    }
-  }
-
   componentDidMount(){
     AccountApiService.getAccounts()
       .then(data => {
@@ -41,9 +34,9 @@ class Profile extends Component {
   render() {
     const context = this.context
     return (
-        <section className='profile'>
+        <section className="profile">
           <h3>{context.userData.full_name}</h3>
-          <img className='profile-image' src={require('../images/Katie1 copy.jpg')} alt='Katie profile'></img>
+          <img className="profile-image" src={require('../images/Katie1 copy.jpg')} alt="Katie profile"></img>
           <p>{context.userData.bio}</p>
           <br></br>
           <div>
@@ -51,18 +44,18 @@ class Profile extends Component {
             {context.accounts.map(a => {
               return (
               <p key={a.id}>
-                  <a href={a.url} target='_blank' rel='noopener noreferrer'>{a.name}</a>
+                  <a href={a.url} target="_blank" rel="noopener noreferrer">{a.name}</a>
               </p>
               )
             })}
           </div>
           <br></br>
-          <div className='projects'>
+          <div className="projects">
             <h4>Projects</h4>
             {context.projects.map(p => {
               return (
               <div key={p.id}>
-                  <a href={p.url} target='_blank' rel='noopener noreferrer'>{p.name}</a>
+                  <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a>
                   <p>{p.description}</p>
               </div>
               )
@@ -71,7 +64,6 @@ class Profile extends Component {
         </section>
     );
   }
-  
 }
 
 export default Profile;

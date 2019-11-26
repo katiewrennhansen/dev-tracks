@@ -5,14 +5,22 @@ import ResourceContext from '../contexts/ResourceContext'
 class EditResource extends Component {
   static contextType = ResourceContext
 
+  constructor(props){
+    super(props)
+    this.state = {
+      error: null
+    }
+    this.updateResource = this.updateResource.bind(this)
+  }
+
   componentDidMount(){
     const id = this.props.match.params.id
     ResourceApiService.getResourceById(id)
       .then(data => {
         this.context.setResource(data)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        this.setState({ error: error })
       })
   }
 
@@ -47,8 +55,8 @@ class EditResource extends Component {
           .then(data => {
             this.context.setData(data)
           })
-      }).catch(err => {
-        console.log(err)
+      }).catch(error => {
+        this.setState({ error: error })
       })
     this.props.history.push('/dashboard')
   }
@@ -56,7 +64,7 @@ class EditResource extends Component {
   render() {
     const r = this.context.resource
     return (
-        <div className='edit-resource'>
+        <div className="edit-resource">
         <form onSubmit={(e) => this.props.handleSubmit(e)}>
           <h2>Edit {r.name}</h2>
           <label htmlFor="name">Title</label>

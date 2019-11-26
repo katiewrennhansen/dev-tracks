@@ -6,11 +6,11 @@ import AccountSettings from './pages/AccountSettings'
 import Login from './pages/Login'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
-import './App.css';
 import PrivateRoute from './utilities/PrivateRoute'
 import PublicOnlyRoute from './utilities/PublicOnlyRoute'
 import NotFound from './pages/NotFound'
 import TokenService from './services/token-service'
+import './App.css';
 
 
 class App extends Component {
@@ -19,6 +19,7 @@ class App extends Component {
     this.state = {
       error: null
     }
+    this.handleLogout = this.handleLogout.bind(this) 
   }
 
   handleLogout = () => {
@@ -28,11 +29,11 @@ class App extends Component {
 
   render() {
     return (
-      <main className='App'>
+      <main className="App">
         <Nav 
           handleLogout={this.handleLogout}
         />
-        <section className='content'>
+        <section className="content">
           <Switch>
             <Route 
               exact path='/'
@@ -47,7 +48,7 @@ class App extends Component {
               )}
             />
             <PrivateRoute 
-              path={'/account'}
+              path='/account'
               component={AccountSettings}
             />
             <PublicOnlyRoute 

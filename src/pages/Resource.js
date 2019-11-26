@@ -11,8 +11,9 @@ class Resource extends Component {
   constructor(props){
     super(props)
     this.state = {
-      data: []
+      error: null
     }
+    this.deleteData = this.deleteData.bind(this)
   }
 
   componentDidMount(){
@@ -23,15 +24,14 @@ class Resource extends Component {
         data.date_created = FunctionService.parseDate(data.date_created)
         this.context.setResource(data)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        this.setState({ error: error })
       })
   }
 
   componentWillUnmount(){
     this.context.setResource([])
   }
-
 
   deleteData = (id) => {
     ResourceApiService.deleteData(id)
@@ -42,8 +42,8 @@ class Resource extends Component {
             this.context.setResource([])
           })
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        this.setState({ error: error })
       })
     this.props.history.push('/dashboard')
   }
@@ -51,23 +51,25 @@ class Resource extends Component {
   render() {
     const i = this.context.resource
     return (
-        <div key={i.id} className='resource'>
-            <a href={i.url} target='_blank' rel='noopener noreferrer' ><h2>{i.name}</h2></a>
+        <div key={i.id} className="resource">
+            <a href={i.url} target="_blank" rel="noopener noreferrer">
+              <h2>{i.name}</h2>
+            </a>
             <p>{i.type}</p>
             <p className={`status ${FunctionService.renderClass(i.status)}`}>{i.status}</p>
-            <p className='date-completed'>{i.date_completed}</p>
-            <div className='hidden-content'>
-                <p className='description'>{i.description}</p>
-            <p className='date-created'>Created On: {i.date_created}</p>
+            <p className="date-completed">{i.date_completed}</p>
+            <div className="hidden-content">
+                <p className="description">{i.description}</p>
+            <p className="date-created">Created On: {i.date_created}</p>
                 {TokenService.hasAuthToken()
                 ? (
-                    <div className='actions'>
-                    <Link to={`/dashboard/${i.id}/edit`}>
-                        <button>Edit</button>
-                    </Link>
-                    <button onClick={() => this.deleteData(i.id)}>Delete</button>
+                    <div className="actions">
+                      <Link to={`/dashboard/${i.id}/edit`}>
+                          <button>Edit</button>
+                      </Link>
+                      <button onClick={() => this.deleteData(i.id)}>Delete</button>
                     </div>
-                )
+                  )
                 : null
                 } 
             </div>

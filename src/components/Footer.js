@@ -9,7 +9,7 @@ class Footer extends Component {
         <footer>
             <Link to='/'>DevTracks</Link>
             <p>Created by Katie Hansen</p>
-            <a href='https://katiewrennhansen.github.io/'>katiewrennhansen.github.io</a>
+            <a href="https://katiewrennhansen.github.io/">katiewrennhansen.github.io</a>
         </footer>
     );
   }

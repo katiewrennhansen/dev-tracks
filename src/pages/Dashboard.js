@@ -17,9 +17,10 @@ class Dashboard extends Component {
   constructor(props){
     super(props)
     this.state = {
-      active: false,
+      error: null,
       data: [],
     }
+    this.filterData = this.filterData.bind(this)
   }
 
   componentDidMount(){
@@ -27,8 +28,8 @@ class Dashboard extends Component {
       .then(data => {
         this.context.setData(data)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        this.setState({ error: error })
       })
   }
   
@@ -42,89 +43,57 @@ class Dashboard extends Component {
   //       })     
   // }
 
-  deleteData = (id) => {
-    ResourceApiService.deleteData(id)
-      .then(res => {
-        ResourceApiService.getData()
-          .then(data => {
-            this.context.setData(data)
-          })
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
-
   componentWillUnmount() {
     this.context.setData([])
   }
-
 
   filterData = (e) => {
     e.preventDefault()
     const value = e.target.value
 
     if(value === 'namea-z'){
-      ResourceApiService.getData()
-      .then(data => {
-        this.context.setData(FunctionService.sortAtoZ(data))
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      this.context.setData(FunctionService.sortAtoZ(this.context.data))
     }
     if(value === 'namez-a'){
-      ResourceApiService.getData()
-      .then(data => {
-        this.context.setData(FunctionService.sortZtoA(data))
-      })
-      .catch(err => {
-        console.log(err)
-      })
+        this.context.setData(FunctionService.sortZtoA(this.context.data))
     }
     if(value === 'date_created'){
-      ResourceApiService.getData()
-      .then(data => {
-        this.context.setData(FunctionService.sortDate(data))
-      })
-      .catch(err => {
-        console.log(err)
-      })
+        this.context.setData(FunctionService.sortDate(this.context.data))
     }
     if(value === ''){
       ResourceApiService.getData()
       .then(data => {
         this.context.setData(data)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        this.setState({ error: error })
       })
-  }
+    }
 }
 
   render() {
     return (
-      <div className='dashboard-grid'>
+      <div className="dashboard-grid">
         <Profile />
-        <section className='resources'>
-            <div className='resources-grid-container'>
+        <section className="resources">
+            <div className="resources-grid-container">
             <h2>
               <Link to='/dashboard'>
                 <h2>Resources</h2>
               </Link>
             </h2>
-              {TokenService.hasAuthToken()
-                ? (<Link className='save' to='/dashboard/add-resource'> &#65291; Add Resource</Link>)
+              { TokenService.hasAuthToken()
+                ? <Link className="save" to='/dashboard/add-resource'> &#65291; Add Resource</Link>
                 : null
               }
-              <select name='filter' onChange={this.filterData}>
-                <option value=''>Filter By</option>
-                <option value='date_created'>Most Recent</option>
-                <option value='namea-z'>Title (A - Z)</option>
-                <option value='namez-a'>Title (Z - A)</option>
+              <select name="filter" onChange={this.filterData}>
+                <option value="">Filter By</option>
+                <option value="date_created">Most Recent</option>
+                <option value="namea-z">Title (A - Z)</option>
+                <option value="namez-a">Title (Z - A)</option>
               </select>
             </div>
-            <div className='resource-content'>
+            <div className="resource-content">
             <Switch>
               <Route 
                 exact path='/dashboard'
