@@ -56,7 +56,6 @@ class Profile extends Component {
               return (
               <div key={p.id}>
                   <a href={p.url} target="_blank" rel="noopener noreferrer">{p.name}</a>
-                  <p>{p.description}</p>
               </div>
               )
             })}
