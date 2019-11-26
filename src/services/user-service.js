@@ -11,6 +11,15 @@ const UsersApiService = {
                 : res.json()
           )
     },
+    getUserById(id){
+        return fetch(`${config.API_ENDPOINT}/users/${id}`,  {
+            method: 'GET',
+          }).then(res => 
+              (!res.ok)
+                ? res.json().then(e => Promise.reject(e))
+                : res.json()
+          )
+    },
     postUser(newResource){
         return fetch(`${config.API_ENDPOINT}/users`,  {
             method: 'POST',

@@ -29,6 +29,13 @@ class Profile extends Component {
     .catch(err => {
       console.log(err)
     })
+    UsersApiService.getUserById('1')
+      .then(data => {
+        this.context.setUserData(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   render() {
