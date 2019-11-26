@@ -375,12 +375,11 @@ button:hover {
     opacity: 0;
     margin: 0;
     padding:0;
-    display: none;
 }
 
 form.hidden {
     margin: 0;
-    display: block;
+    display: none;
 }
 
 .status {
