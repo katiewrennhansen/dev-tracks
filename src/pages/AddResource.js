@@ -23,7 +23,7 @@ class AddResource extends Component {
       status: e.target.status.value,
       url: e.target.url.value,
       description: e.target.description.value,
-      user_id: 5
+      user_id: this.context.user_id
     }
     if(date !== '' && date !== null) {
       newResource.date_completed = date

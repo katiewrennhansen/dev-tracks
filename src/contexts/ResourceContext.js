@@ -11,6 +11,7 @@ const ResourceContext = React.createContext({
     propjects: [],
     userData: [],
     update: false,
+    userId: 1,
     updateId: () => {},
     setData: () => {},
     setResource: () => {},
@@ -34,7 +35,8 @@ export class ResourceProvider extends Component {
         accounts: [],
         projects: [],
         userData: [],
-        update: false
+        update: false,
+        userId: 1,
     }
 
     setError = error => {
@@ -107,7 +109,8 @@ export class ResourceProvider extends Component {
             setError: this.setError,
             update: this.state.update,
             setUpdate: this.setUpdate,
-            addData: this.addData
+            addData: this.addData,
+            user_id:this.state.userId
         }
         return (
           <ResourceContext.Provider value={value}>

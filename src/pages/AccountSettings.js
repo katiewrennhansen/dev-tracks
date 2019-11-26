@@ -40,7 +40,7 @@ class AccountSettings extends Component {
 
   updateUser = (e) => {
     e.preventDefault()
-    const id = 5
+    const id = this.context.user_id
     const { full_name, email, bio } = e.target
     let updatedUser = {}
 
@@ -68,7 +68,7 @@ class AccountSettings extends Component {
     const newAccount = {
       name: e.target.name.value,
       url: e.target.url.value,
-      user_id: 5
+      user_id: this.context.user_id
     }
     AccountApiService.postAccount(newAccount)
       .catch(error => {
@@ -84,7 +84,7 @@ class AccountSettings extends Component {
       name: e.target.name.value,
       url: e.target.url.value,
       description: e.target.description.value,
-      user_id: 5
+      user_id: this.context.user_id
     }
     ProjectApiService.postProject(newProject)
       .catch(error => {

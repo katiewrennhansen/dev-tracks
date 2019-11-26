@@ -8,6 +8,12 @@ This site contains a resource management application with the purpose of organiz
 https://dev-track.now.sh/login
 
 
+## To Do
+- get deploy working with back-end api
+- figure out automatic re-rendering of page on change
+- add final styles
+
+
 
 
 
