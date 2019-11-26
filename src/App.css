@@ -53,7 +53,8 @@ textarea,
 footer p,
 .submit button,
 button,
-a {
+a,
+.project p {
     font-family: serif;    
 }
 
