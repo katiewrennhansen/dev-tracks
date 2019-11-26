@@ -22,7 +22,7 @@ class Profile extends Component {
     .catch(err => {
       console.log(err)
     })
-    UsersApiService.getUserById('5')
+    UsersApiService.getUserById(this.context.user_id)
       .then(data => {
         this.context.setUserData(data)
       })
