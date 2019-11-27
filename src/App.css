@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Baskervville&display=swap');
+
+/* GLOBAL STYLES */
 
 * {
     box-sizing: border-box;
@@ -26,19 +27,26 @@ a {
     transition: 300ms linear;
 }
 
-.profile a:hover {
-    color:white;
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
 }
 
-nav a:hover,
-nav button:hover {
-    color: white;
-    transition: 300ms linear;
+input,
+select,
+textarea {
+    display: block;
+    margin-bottom: 20px;
+    background: #DEF2F1;
+}
+
+select {
+    appearance: none;
 }
 
 nav a,
 footer a,
-nav button,
 .landing-content p,
 .resource p,
 .resource a,
@@ -51,8 +59,6 @@ input,
 label,
 textarea,
 footer p,
-.submit button,
-button,
 a,
 .project p {
     font-family: serif;    
@@ -64,21 +70,14 @@ h3,
 h4,
 .resource h2,
 .landing-content a,
-.login-form button {
+input[type='submit'],
+nav button,
+a.add-resource-button,
+.actions button,
+button,
+.log a {
     font-family: 'Montserrat', sans-serif;
     
-}
-
-nav a,
-footer a,
-nav button {
-    font-size: 14px;
-}
-
-nav button,
-.edit-account button  {
-    background:none;
-    border: none;
 }
 
 h1 {
@@ -92,10 +91,41 @@ h2 {
     margin-bottom: 40px;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+footer {
+    background-color: #3AAFA9;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+
+/* NAV STYLES */
+
+nav a,
+footer a,
+nav button {
+    font-size: 14px;
+}
+
+nav button,
+.edit-account button  {
+    background:none;
+    border: none;
+}
+
+nav a:hover,
+nav button:hover {
+    color: white;
+    transition: 300ms linear;
+}
 
 .nav-container {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
 }
 
 .company-logo {
@@ -113,7 +143,6 @@ h2 {
 .log a {
     background: #17252A;
     color: white;
-    border: 1px solid #17252A;
     padding: 4px 16px;
     border-radius: 5px;
 }
@@ -125,35 +154,15 @@ h2 {
     align-items: center;
 }
 
-.resources-grid-container {
-    background: #3AAFA9;
-}
 
-.resources-grid-container select {
-    margin-top: 30px;
-    box-shadow: 2px 2px 3px #2b7a78;
-}
 
-.profile {
-    background: #DEF2F1;
-    border-radius: 5px;
-    padding-top: 30px;
-}
-
-.profile-image {
-    width: 30%;
-    border-radius: 5px;
-}
-
-.content {
-    padding: 50px 20px;
-    text-align: center;
-    min-height: 100vh;
-    background-color: #3AAFA9;
+/* LANDING STYLES */
+.landing-content h1 {
+    padding-top: 40px;
 }
 
 .landing-content p {
-    margin-bottom: 50px;
+    margin: 50px 20px;
 }
 
 .get-started {
@@ -170,8 +179,115 @@ h2 {
     background: none;
 }
 
+
+
+
+/* DASHBOARD STYLES */
+.resources-grid-container {
+    background: #3AAFA9;
+}
+
+.resources-grid-container select {
+    margin-top: 30px;
+    box-shadow: 1px 1px 2px #2b7a78;
+}
+
+.profile {
+    background: #DEF2F1;
+    border-radius: 5px;
+    padding: 30px 0 100px;
+}
+
+.profile-image {
+    width: 30%;
+    border-radius: 5px;
+}
+
+.profile a:hover {
+    color:#2b7a78;
+}
+
+.content {
+    padding: 50px 20px;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #3AAFA9;
+}
+
+.resource h2 {
+    color: #17252A;
+}
+
+.add-resource-button:hover {
+    color: #17252A;
+    background: none;
+}
+
+.add-resource-button{
+    background: #17252A;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    border: 1px solid #17252A;
+}
+
+.resources li,
+.resource {
+    background: #DEF2F1;
+    padding: 10px 15px 30px;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: 300ms linear;
+    color: #17252A;
+}
+
+.resources li:hover {
+    cursor: pointer;
+    transition: 300ms linear;
+    box-shadow: 4px 4px 6px #2b7a78;
+}
+
+.completed {
+    background: #18d56d;
+    box-shadow: 1px 1px 2px rgb(223, 223, 223);
+}
+
+.todo {
+    background: rgb(255, 0, 0);
+    box-shadow: 1px 1px 2px rgb(223, 223, 223);
+}
+
+.inprogress {
+    background: rgb(230, 176, 0);
+    box-shadow: 1px 1px 2px rgb(223, 223, 223);
+}
+
+.actions {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    font-size: 16px;
+}
+
+.actions button,
+.edit {
+    align-self: center;
+    border: 1px solid #17252A;
+    padding: 8px 15px; 
+    max-width: 100px;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+
+
+/* ACCOUNT SETTINGS STYLES */
 .edit-account h1 {
-    padding: 100px 0 30px;
+    padding-bottom: 30px;
 }
 
 .edit-account button {
@@ -192,6 +308,7 @@ h2 {
     margin: 20px auto;
     padding: 30px;
     position: relative;
+    overflow: hidden;
 }
 
 .account button,
@@ -213,7 +330,6 @@ h2 {
 .edit-account button:hover {
     background: none;
     color: #17252A;
-
 } 
 
 .save:hover,
@@ -227,6 +343,9 @@ h2 {
     transition: 200ms linear;
 }
 
+
+
+/* FORMS */
 .add-resource,
 .edit-resource,
 .login-form,
@@ -249,7 +368,6 @@ h2 {
     padding: 25px 20px 30px;
     color: white;
     border-radius: 5px;
-    box-shadow: 1px 1px 3px rgb(181, 181, 181);
 }
 
 .add-resource input,
@@ -259,7 +377,7 @@ textarea,
 .login-form input,
 .edit-account input,
 select {
-    padding: 10px 12px;
+    padding: 14px 16px;
     width: 100%;
     border-radius: 5px;
     border: none;
@@ -293,104 +411,16 @@ input[type='submit']:hover,
     transition: 200ms linear;
 }
 
-select {
-    appearance: none;
-    box-shadow: 1px 1px 2px gray;
-}
-
-.save {
-    border-radius: 5px;
-    padding: 8px 20px;
-    background: none;
-    color: #17252A;
-    border: 1px solid #17252A;
-}
-
-.save:hover {
-    background: #17252A;
-    color: white;
-}
-
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    text-align: left;
-}
-
-input,
-select,
-textarea {
-    display: block;
-    margin-bottom: 20px;
-    background: #DEF2F1;
-}
-
-.profile {
-    padding-bottom: 100px;
-}
-
-.resources li,
-.resource {
-    background: #DEF2F1;
-    padding: 10px 15px 30px;
-    margin: 10px 0;
-    border-radius: 5px;
-    transition: 300ms linear;
-    color: #17252A;
-}
-
-.resource h2 {
-    color: #17252A;
-}
-
-.resources li:hover {
-    cursor: pointer;
-    transition: 300ms linear;
-    box-shadow: 4px 4px 6px #2b7a78;
-}
-
-.actions {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.actions button {
-    background: none;
-    border: none;
-    font-size: 16px;
-}
-
-.actions button,
-.edit {
-    align-self: center;
-    border: 1px solid #17252A;
-    padding: 8px 15px; 
-    max-width: 100px;
-    border-radius: 5px;
-    margin: 0 10px;
-}
-
-
-button:hover {
-    cursor: pointer;
-}
-
 .edit-account-form {
     height: auto;
     opacity: 1;
 }
 
-.hidden  {
-    height: 0px;
-    opacity: 0;
-    margin: 0;
-    padding:0;
-}
-
 form.hidden {
     margin: 0;
     display: none;
+    height: 0px;
+    padding:0;
 }
 
 .status {
@@ -399,21 +429,6 @@ form.hidden {
     margin: 0 auto;
     border-radius: 5px;
     font-family: sans-serif;
-}
-
-.completed {
-    background: #18d56d;
-    box-shadow: 1px 1px 2px rgb(223, 223, 223);
-}
-
-.todo {
-    background: rgb(255, 0, 0);
-    box-shadow: 1px 1px 2px rgb(223, 223, 223);
-}
-
-.inprogress {
-    background: rgb(230, 176, 0);
-    box-shadow: 1px 1px 2px rgb(223, 223, 223);
 }
 
 .edit-account section {
@@ -429,24 +444,22 @@ form.hidden {
 }
 
 
-footer {
-    background-color: #3AAFA9;
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-footer.margin {
-    padding-left: 240px;
-}
-
-
 @media (min-width: 768px) {
-    .nav-container {
-        grid-template-columns: 300px, auto;
+    nav {
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+        padding-right: 15px;
+    }
+    h1 {
+        font-size: 50px;
+    }
+    select {
+        width: 100%;
+        grid-column: 1 / 3;
     }
     .nav-container {
-        grid-template-columns: 3fr 2fr;
+        grid-template-columns: 3fr 3fr;
     }
     .company-logo {
         padding-left: 50px;
@@ -461,22 +474,17 @@ footer.margin {
     }
     .landing-content {
         margin: 0 auto;
-        padding-top: 200px;
+        padding-top: 180px;
         width: 70%;
     }
     .landing-content p {
-        font-size: 20px;
+        font-size: 17px;
         width: 80%;
         margin: 40px auto 60px;
     }
     .resources {
         margin-left: 220px;
         padding: 0 20px 0 40px;
-    }
-    nav {
-        position: fixed;
-        width: 100%;
-        z-index: 100;
     }
     .profile {
         padding-top: 50px;
@@ -508,15 +516,8 @@ footer.margin {
         align-self: flex-end;
         margin: 0;
     }
-    select {
-        width: 100%;
-        grid-column: 1 / 3;
-    }
-    .resources-grid-container .save {
+    .resources-grid-container .add-resource-button{
         justify-self: flex-end;
-    }
-    h1 {
-        font-size: 50px;
     }
     .add-resource form,
     .edit-resource form,
@@ -553,12 +554,18 @@ footer.margin {
         margin: 0;
         align-self: center;
     }
+    .actions button {
+        margin: 0 20px 0 0;
+    }
     .login-form {
         padding-top: 120px;
     }
     .account,
     .project {
         max-width: 450px;
+    }
+    footer.margin {
+        padding-left: 240px;
     }
 }
 @media (min-width: 1200px) {

@@ -73,7 +73,7 @@ class Dashboard extends Component {
               </Link>
             </h2>
               { TokenService.hasAuthToken()
-                ? <Link className="save" to='/dashboard/add-resource'> &#65291; Add Resource</Link>
+                ? <Link className="add-resource-button" to='/dashboard/add-resource'> &#65291; Add Resource</Link>
                 : null
               }
               <select name="filter" onChange={this.filterData}>
