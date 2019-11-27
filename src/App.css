@@ -386,7 +386,7 @@ select {
 }
 
 input[type='submit'],
-.login-form button:hover,
+.login-form button,
 .submit button {
     color: #DEF2F1;
     border: 1px solid #DEF2F1;
@@ -396,14 +396,14 @@ input[type='submit'],
 
 .login-form button {
     width: 100%;
-    height: 40px;
+    height: 45px;
     border-radius: 5px;
     font-size: 16px;
     margin-top: 10px;
 }
 
 input[type='submit']:hover,
-.login-form button,
+.login-form button:hover,
 .submit button:hover {
     color: #17252A;
     background: #DEF2F1;
