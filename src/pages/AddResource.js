@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import ResourceApiService from '../services/resource-api-service'
-import ResourceContext from '../contexts/ResourceContext'
-import FunctionService from '../services/function-service'
+import UpdateResourceContext from '../contexts/UpdateResourceContext'
 
 class AddResource extends Component {
-  static contextType = ResourceContext
+  static contextType = UpdateResourceContext
 
   constructor(props){
     super(props)
@@ -23,24 +22,22 @@ class AddResource extends Component {
       status: e.target.status.value,
       url: e.target.url.value,
       description: e.target.description.value,
-      user_id: this.context.user_id
+      user_id: this.context.userId
     }
     if(date !== '' && date !== null) {
       newResource.date_completed = date
     }
+
     ResourceApiService.postData(newResource)
       .then(data => {
-        data.date_completed = FunctionService.parseDate(data.date_completed)
-        data.date_created = FunctionService.parseDate(data.date_created)
-        this.context.addData(data)
-      }).then(
         ResourceApiService.getData()
           .then(data => {
-            this.props.history.push('/dashboard')
-            this.context.setData(data)
+            this.context.setResources(data)
           })
-      )
+      })
       .catch(this.context.setError)
+
+      this.props.history.push('/dashboard')
   }
 
   render() {

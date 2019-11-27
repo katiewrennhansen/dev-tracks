@@ -43,9 +43,9 @@ const UsersApiService = {
             },
             body: JSON.stringify(updatedResouce)
           }).then(res => 
-              (!res.ok)
+            (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
-                : res.json()
+                : res
           )
     },
     deleteUser(id){

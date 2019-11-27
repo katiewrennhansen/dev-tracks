@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Link, Switch, withRouter } from 'react-router-dom'
 import Profile from '../components/Profile'
 import ResourceApiService from '../services/resource-api-service'
-import ResourceContext from '../contexts/ResourceContext'
 import TokenService from '../services/token-service'
 import PrivateRoute from '../utilities/PrivateRoute'
 import AddResource from '../pages/AddResource'
@@ -10,9 +9,10 @@ import EditResource from '../pages/EditResource'
 import Resource from '../pages/Resource'
 import ResourceList from '../pages/ResourceList'
 import FunctionService from '../services/function-service'
+import UpdateResourceContext from '../contexts/UpdateResourceContext'
 
 class Dashboard extends Component {
-  static contextType = ResourceContext
+  static contextType = UpdateResourceContext
 
   constructor(props){
     super(props)
@@ -25,16 +25,11 @@ class Dashboard extends Component {
   componentDidMount(){
     ResourceApiService.getData()
       .then(data => {
-        this.context.setData(data)
-        this.setState({ data: data })
+        this.context.setResources(data)
       })
       .catch(error => {
         this.setState({ error: error })
       })
-  }
-
-  componentWillUnmount() {
-    this.context.setData([])
   }
 
   filterData = (e) => {
@@ -42,18 +37,18 @@ class Dashboard extends Component {
     const value = e.target.value
     
     if(value === 'namea-z'){
-      this.context.setData(FunctionService.sortAtoZ(this.context.data))
+      this.setResources(FunctionService.sortAtoZ(this.state.resources))
     }
     if(value === 'namez-a'){
-        this.context.setData(FunctionService.sortZtoA(this.context.data))
+        this.setResources(FunctionService.sortZtoA(this.state.resources))
     }
     if(value === 'date_created'){
-        this.context.setData(FunctionService.sortDate(this.context.data))
+        this.setResources(FunctionService.sortDate(this.state.resources))
     }
     if(value === ''){
       ResourceApiService.getData()
       .then(data => {
-        this.context.setData(data)
+        this.setResources(data)
       })
       .catch(error => {
         this.setState({ error: error })
@@ -84,28 +79,29 @@ class Dashboard extends Component {
               </select>
             </div>
             <div className="resource-content">
-            <Switch>
-              <Route 
-                exact path='/dashboard'
-                component={ResourceList}
-                updateComponent={this.updateComponent}
-              />
-             <PrivateRoute
-                path='/dashboard/add-resource'
-                component={AddResource}
-                updateComponent={this.updateComponent}
+              <Switch>
+                <Route 
+                  exact path='/dashboard'
+                  component={ResourceList}
+                  updateComponent={this.updateComponent}
+                  resources={this.state.resources}
+                />
+              <PrivateRoute
+                  path='/dashboard/add-resource'
+                  component={AddResource}
+                  updateComponent={this.updateComponent}
 
-              />
-              <PrivateRoute 
-                path='/dashboard/:id/edit'
-                component={EditResource}
-                updateComponent={this.updateComponent}
-              />
-              <Route
-                path='/dashboard/:id'
-                component={Resource}
-              />
-            </Switch>
+                />
+                <PrivateRoute 
+                  path='/dashboard/:id/edit'
+                  component={EditResource}
+                  updateComponent={this.updateComponent}
+                />
+                <Route
+                  path='/dashboard/:id'
+                  component={Resource}
+                />
+              </Switch>
             </div>
         </section>
       </div>

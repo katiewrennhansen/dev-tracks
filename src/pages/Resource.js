@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import ResourceApiService from '../services/resource-api-service'
-import ResourceContext from '../contexts/ResourceContext'
+import UpdateResourceContext from '../contexts/UpdateResourceContext'
 import TokenService from '../services/token-service'
 import FunctionService from '../services/function-service'
 
 class Resource extends Component {
-  static contextType = ResourceContext
+  static contextType = UpdateResourceContext
 
   constructor(props){
     super(props)
@@ -22,60 +22,69 @@ class Resource extends Component {
       .then(data => {
         data.date_completed = FunctionService.parseDate(data.date_completed)
         data.date_created = FunctionService.parseDate(data.date_created)
-        this.context.setResource(data)
+        this.context.setSingleResource(data)
       })
       .catch(error => {
-        this.setState({ error: error })
+        this.context.setError(error)
       })
   }
 
   componentWillUnmount(){
-    this.context.setResource([])
+    this.context.setSingleResource([])
   }
 
   deleteData = (id) => {
+    this.context.deleteResource(id)
     ResourceApiService.deleteData(id)
-      .then(res => {
-        ResourceApiService.getData()
-          .then(data => {
-            this.context.setData(data)
-            this.context.setResource([])
-          })
-      })
       .catch(error => {
         this.context.setError(error)
       })
       this.props.history.push('/dashboard')
   }
 
+
   render() {
-    const i = this.context.resource
+    const i = this.context.singleResource
     return (
-        <div key={i.id} className="resource">
-            <a href={i.url} target="_blank" rel="noopener noreferrer">
-              <h2>{i.name}</h2>
-            </a>
-            <p>{i.type}</p>
-            <p className={`status ${FunctionService.renderClass(i.status)}`}>{i.status}</p>
-            <p className="date-completed">{i.date_completed}</p>
-            <div className="hidden-content">
-                <p className="description">{i.description}</p>
-            <p className="date-created">Created On: {i.date_created}</p>
-                {TokenService.hasAuthToken()
-                ? (
-                    <div className="actions">
-                      <Link to={`/dashboard/${i.id}/edit`}>
-                          <button>Edit</button>
-                      </Link>
-                      <button onClick={() => this.deleteData(i.id)}>Delete</button>
-                    </div>
-                  )
-                : null
-                } 
-            </div>
-        </div>
-    );
-  }
+      <SingleResource
+        i={i}
+        deleteData={this.deleteData}
+      />
+    )
+  }    
 }
 
 export default Resource;
+
+
+function SingleResource(props){
+  return (
+    <UpdateResourceContext.Consumer>
+      {(context)=> (
+            <div key={props.i.id} className="resource">
+                <a href={props.i.url} target="_blank" rel="noopener noreferrer">
+                  <h2>{props.i.name}</h2>
+                </a>
+                <p>{props.i.type}</p>
+                <p className={`status ${FunctionService.renderClass(props.i.status)}`}>{props.i.status}</p>
+                <p className="date-completed">{props.i.date_completed}</p>
+                <div className="hidden-content">
+                    <p className="description">{props.i.description}</p>
+                <p className="date-created">Created On: {props.i.date_created}</p>
+                    {TokenService.hasAuthToken()
+                    ? (
+                        <div className="actions">
+                          <Link to={`/dashboard/${props.i.id}/edit`}>
+                              <button>Edit</button>
+                          </Link>
+                          <button onClick={() => props.deleteData(props.i.id)}>Delete</button>
+                        </div>
+                      )
+                    : null
+                    } 
+                </div>
+            </div>
+          )}
+    </UpdateResourceContext.Consumer>
+    )
+  }

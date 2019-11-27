@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import ResourceContext from '../contexts/ResourceContext'
+import UpdateResourceContext from '../contexts/UpdateResourceContext'
 import ResourceItem from '../components/ResourceItem'
-// import ResourceApiService from '../services/resource-api-service'
 
 class ResourceList extends Component {
-  static contextType = ResourceContext
+  static contextType = UpdateResourceContext
 
   render() {
     return (
         <ul>
-          {this.context.data.map(i => (
+          {this.context.resources.map(i => (
               <ResourceItem 
                 data={i}
                 key={i.id}

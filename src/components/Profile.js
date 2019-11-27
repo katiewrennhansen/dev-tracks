@@ -1,33 +1,33 @@
 import React, { Component } from 'react';
 import AccountApiService from '../services/account-api-service'
-import ResourceContext from '../contexts/ResourceContext'
+import UpdateResourceContext from '../contexts/UpdateResourceContext'
 import ProjectApiService from '../services/project-api-service'
 import UsersApiService from '../services/user-service';
 
 class Profile extends Component {
-  static contextType = ResourceContext
+  static contextType = UpdateResourceContext
 
   componentDidMount(){
     AccountApiService.getAccounts()
       .then(data => {
         this.context.setAccounts(data)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        this.context.setError(error)
       })
     ProjectApiService.getProjects()
     .then(data => {
       this.context.setProjects(data)
     })
-    .catch(err => {
-      console.log(err)
+    .catch(error => {
+      this.context.setError(error)
     })
-    UsersApiService.getUserById(this.context.user_id)
+    UsersApiService.getUserById(this.context.userId)
       .then(data => {
         this.context.setUserData(data)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(error => {
+        this.context.setError(error)
       })
   }
 

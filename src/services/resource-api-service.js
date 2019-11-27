@@ -43,18 +43,18 @@ const ResourceApiService = {
                 : res.json()
           )
     },
-    updateData(id, updatedResouce){
+    updateData(id, updatedResource){
         return fetch(`${config.API_ENDPOINT}/resources/${id}`,  {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
                 'authorization': `bearer ${TokenService.getAuthToken()}`
             },
-            body: JSON.stringify(updatedResouce)
+            body: JSON.stringify(updatedResource)
           }).then(res => 
               (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
-                : res.json()
+                : res
           )
     },
     deleteData(id){

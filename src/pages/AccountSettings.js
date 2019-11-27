@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import AddItemForm from '../components/AddItemForm'
 import AccountApiService from '../services/account-api-service'
-import ResourceContext from '../contexts/ResourceContext'
+import UpdateResourceContext from '../contexts/UpdateResourceContext'
 import ProjectApiService from '../services/project-api-service'
 import UsersApiService from '../services/user-service'
 
 class AccountSettings extends Component {
-  static contextType = ResourceContext
+  static contextType = UpdateResourceContext
 
   constructor(props){
     super(props)
@@ -36,13 +36,13 @@ class AccountSettings extends Component {
       this.context.setProjects(data)
     })
     .catch(error => {
-      console.log(error)              
+      this.context.setError(error)             
     })
   }
 
   updateUser = (e) => {
     e.preventDefault()
-    const id = this.context.user_id
+    const id = this.context.userId
     const { full_name, email, bio } = e.target
     let updatedUser = {}
 
@@ -57,8 +57,17 @@ class AccountSettings extends Component {
     } 
 
     UsersApiService.updateUser(id, updatedUser)
+      .then(data => {
+        UsersApiService.getUserById(id)
+          .then(data => {
+            this.context.setUserData(data)
+          })
+      })
+      .then(() => {
+        this.props.history.push('/dashboard')
+      })
       .catch(error => {
-        console.log(error)               
+        this.context.setError(error)               
       })
     e.target.full_name.value = ''
     e.target.email.value = ''
@@ -70,14 +79,21 @@ class AccountSettings extends Component {
     const newAccount = {
       name: e.target.name.value,
       url: e.target.url.value,
-      user_id: this.context.user_id
+      user_id: this.context.userId
     }
     AccountApiService.postAccount(newAccount)
+      .then(res => {
+        AccountApiService.getAccounts()
+          .then(data => {
+            this.context.setAccounts(data)
+          }) 
+      })
       .catch(error => {
-        console.log(error)
+        this.context.setError(error)
       })
     e.target.name.value = ''
     e.target.url.value = ''
+    this.props.history.push('/account')
   }
 
   postProject = (e) => {
@@ -86,29 +102,41 @@ class AccountSettings extends Component {
       name: e.target.name.value,
       url: e.target.url.value,
       description: e.target.description.value,
-      user_id: this.context.user_id
+      user_id: this.context.userId
     }
     ProjectApiService.postProject(newProject)
+      .then(res => {
+        ProjectApiService.getProjects()
+          .then(data => {
+            this.context.setProjects(data)
+          })
+      })
       .catch(error => {
-        console.log(error)
+        this.context.setError(error)
       })
     e.target.name.value = ''
     e.target.url.value = ''
     e.target.description.value = ''
+    this.props.history.push('/account')
   }
 
   deleteAccount(id){
+    this.context.deleteAccount(id)
     AccountApiService.deleteAccount(id)
       .catch(error => {
-        console.log(error)        
+        this.context.setError(error)                
       })
+    this.props.history.push('/account')
   }
 
   deleteProject(id){
+    this.context.deleteProject(id)
     ProjectApiService.deleteProject(id)
       .catch(error => {
-        console.log(error)
+        this.context.setError(error)
       })
+      this.props.history.push('/account')
+
   }
 
   showForm = (id) => {

@@ -47,11 +47,11 @@ export class ResourceProvider extends Component {
       this.setState({ update })
     }
 
-    setData = (data) => {
-        this.setState({
-          data: data
-        })
-    }
+    // setData = (data) => {
+    //     this.setState({
+    //       data: data
+    //     })
+    // }
 
     setResource = (data) => {
       this.setState({
