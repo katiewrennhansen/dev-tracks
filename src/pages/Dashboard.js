@@ -37,13 +37,13 @@ class Dashboard extends Component {
     const value = e.target.value
     
     if(value === 'namea-z'){
-      this.setResources(FunctionService.sortAtoZ(this.state.resources))
+      this.context.setResources(FunctionService.sortAtoZ(this.context.resources))
     }
     if(value === 'namez-a'){
-        this.setResources(FunctionService.sortZtoA(this.state.resources))
+        this.context.setResources(FunctionService.sortZtoA(this.context.resources))
     }
     if(value === 'date_created'){
-        this.setResources(FunctionService.sortDate(this.state.resources))
+        this.context.setResources(FunctionService.sortDate(this.context.resources))
     }
     if(value === ''){
       ResourceApiService.getData()
