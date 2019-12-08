@@ -8,7 +8,7 @@ class Footer extends Component {
         <footer className={this.props.class}>
             <Link to='/'>DevTracks</Link>
             <p>Created by Katie Hansen</p>
-            <a href="https://katiewrennhansen.github.io/" target="_blank" rel="noopener noreferrer">katiewrennhansen.github.io</a>
+            <a href="https://katiewrennhansen.com" target="_blank" rel="noopener noreferrer">katiewrennhansen.com</a>
         </footer>
     );
   }
