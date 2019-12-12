@@ -5,6 +5,9 @@ const ResourceApiService = {
     getData(){
         return fetch(`${config.API_ENDPOINT}/resources`,  {
             method: 'GET',
+            headers: {
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
+            }
           }).then(res => 
               (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
@@ -14,6 +17,9 @@ const ResourceApiService = {
     getDataForUser(user_id){
         return fetch(`${config.API_ENDPOINT}/resources/user/${user_id}`,  {
             method: 'GET',
+            headers: {
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
+            }
           }).then(res => 
               (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
@@ -23,6 +29,9 @@ const ResourceApiService = {
     getResourceById(id){
         return fetch(`${config.API_ENDPOINT}/resources/${id}`,  {
             method: 'GET',
+            headers: {
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
+            }
           }).then(res => 
               (!res.ok)
                 ? res.json().then(e => Promise.reject(e))

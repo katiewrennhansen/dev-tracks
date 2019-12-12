@@ -2,60 +2,57 @@ import config from '../config'
 import TokenService from './token-service'
 
 const UsersApiService = {
-    getUsers(){
-        return fetch(`${config.API_ENDPOINT}/users`,  {
+    getUser(){
+        return fetch(`${config.API_ENDPOINT}/users`, {
             method: 'GET',
-          }).then(res => 
-              (!res.ok)
-                ? res.json().then(e => Promise.reject(e))
-                : res.json()
-          )
-    },
-    getUserById(id){
-        return fetch(`${config.API_ENDPOINT}/users/${id}`,  {
-            method: 'GET',
-          }).then(res => 
+            headers: {
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
+            },
+          })
+          .then(res => 
               (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
                 : res.json()
           )
     },
     postUser(newResource){
-        return fetch(`${config.API_ENDPOINT}/users`,  {
+        return fetch(`${config.API_ENDPOINT}/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`
             },
             body: JSON.stringify(newResource)
-          }).then(res => 
+          })
+          .then(res => 
               (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
                 : res.json()
           )
     },
-    updateUser(id, updatedResouce){
-        return fetch(`${config.API_ENDPOINT}/users/${id}`,  {
+    updateUser(updatedResource){
+        return fetch(`${config.API_ENDPOINT}/users`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
             },
-            body: JSON.stringify(updatedResouce)
-          }).then(res => 
+            body: JSON.stringify(updatedResource)
+          })
+          .then(res => 
             (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
-                : res
+                : res.json()
           )
     },
-    deleteUser(id){
-        return fetch(`${config.API_ENDPOINT}/users/${id}`,  {
+    deleteUser(){
+        return fetch(`${config.API_ENDPOINT}/users`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
-                'authorization': `bearer ${TokenService.getAuthToken()}`
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
             }
-          }).then(res => 
+          })
+          .then(res => 
               (!res.ok)
                 ? res.json().then(e => Promise.reject(e))
                 : res.json()

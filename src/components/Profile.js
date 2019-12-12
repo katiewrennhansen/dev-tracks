@@ -22,13 +22,20 @@ class Profile extends Component {
     .catch(error => {
       this.context.setError(error)
     })
-    UsersApiService.getUserById(this.context.userId)
+    UsersApiService.getUser()
       .then(data => {
         this.context.setUserData(data)
       })
       .catch(error => {
         this.context.setError(error)
       })
+  }
+
+  componentWillUnmount(){
+    this.context.setAccounts([])
+    this.context.setError([])
+    this.context.setProjects([])
+    this.context.setUserData([])
   }
 
   render() {

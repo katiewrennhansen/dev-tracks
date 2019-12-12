@@ -12,6 +12,7 @@ import NotFound from './pages/NotFound'
 import TokenService from './services/token-service'
 import './App.css';
 import UpdateResourceContext from './contexts/UpdateResourceContext'
+import Register from './pages/Register';
 
 
 class App extends Component {
@@ -146,6 +147,10 @@ class App extends Component {
             <PublicOnlyRoute 
               path='/login'
               component={Login}
+            />
+            <PublicOnlyRoute 
+              path='/register'
+              component={Register}
             />
             <Route 
               component={NotFound}

@@ -42,7 +42,6 @@ class AccountSettings extends Component {
 
   updateUser = (e) => {
     e.preventDefault()
-    const id = this.context.userId
     const { full_name, email, bio } = e.target
     let updatedUser = {}
 
@@ -56,9 +55,9 @@ class AccountSettings extends Component {
       updatedUser.email = email.value
     } 
 
-    UsersApiService.updateUser(id, updatedUser)
+    UsersApiService.updateUser(updatedUser)
       .then(data => {
-        UsersApiService.getUserById(id)
+        UsersApiService.getUser()
           .then(data => {
             this.context.setUserData(data)
           })
@@ -78,8 +77,7 @@ class AccountSettings extends Component {
     e.preventDefault()
     const newAccount = {
       name: e.target.name.value,
-      url: e.target.url.value,
-      user_id: this.context.userId
+      url: e.target.url.value
     }
     AccountApiService.postAccount(newAccount)
       .then(res => {
@@ -102,8 +100,8 @@ class AccountSettings extends Component {
       name: e.target.name.value,
       url: e.target.url.value,
       description: e.target.description.value,
-      user_id: this.context.userId
     }
+    
     ProjectApiService.postProject(newProject)
       .then(res => {
         ProjectApiService.getProjects()
