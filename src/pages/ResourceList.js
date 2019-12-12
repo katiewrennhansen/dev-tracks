@@ -7,13 +7,13 @@ class ResourceList extends Component {
 
   render() {
     return (
-        <ul>
-          {this.context.resources.map(i => (
-              <ResourceItem 
-                data={i}
-                key={i.id}
-              />
-          ))}    
+      <ul>
+        {this.context.resources.map(i => (
+            <ResourceItem 
+              data={i}
+              key={i.id}
+            />
+        ))}    
       </ul>
     );
   }

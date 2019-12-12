@@ -86,7 +86,7 @@ class Dashboard extends Component {
                   updateComponent={this.updateComponent}
                   resources={this.state.resources}
                 />
-              <PrivateRoute
+                <PrivateRoute
                   path='/dashboard/add-resource'
                   component={AddResource}
                   updateComponent={this.updateComponent}
@@ -97,7 +97,7 @@ class Dashboard extends Component {
                   component={EditResource}
                   updateComponent={this.updateComponent}
                 />
-                <Route
+                <PrivateRoute
                   path='/dashboard/:id'
                   component={Resource}
                 />

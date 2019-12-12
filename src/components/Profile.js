@@ -3,12 +3,14 @@ import AccountApiService from '../services/account-api-service'
 import UpdateResourceContext from '../contexts/UpdateResourceContext'
 import ProjectApiService from '../services/project-api-service'
 import UsersApiService from '../services/user-service';
+import TokenService from '../services/token-service'
 
 class Profile extends Component {
   static contextType = UpdateResourceContext
 
   componentDidMount(){
-    AccountApiService.getAccounts()
+    if(TokenService.getAuthToken()){
+      AccountApiService.getAccounts()
       .then(data => {
         this.context.setAccounts(data)
       })
@@ -29,6 +31,7 @@ class Profile extends Component {
       .catch(error => {
         this.context.setError(error)
       })
+    }
   }
 
   componentWillUnmount(){
@@ -43,7 +46,10 @@ class Profile extends Component {
     return (
         <section className="profile">
           <h3>{context.userData.full_name}</h3>
-          <img className="profile-image" src={require('../images/Katie1 copy.jpg')} alt="Katie profile"></img>
+          {(this.context.userData.id === 1)
+          ? <img className="profile-image" src={require('../images/Katie1 copy.jpg')} alt="Katie profile"></img>
+          : null
+          }
           <p>{context.userData.bio}</p>
           <br></br>
           <div>

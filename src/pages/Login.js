@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import AuthApiService from '../services/auth-service'
 import TokenService from '../services/token-service';
 
@@ -49,8 +50,15 @@ class Login extends Component {
             <input type="text" name="user_name" id="user_name" placeholder="Username"></input>
             <label htmlFor="password">Password</label>            
             <input type="password" name="password" id="password" placeholder="Password"></input>
-            <button type="submit">Login</button>
+            <input type="submit" value="Login" />
+            <p>Already have an account? <Link className="login-link" to='/register'>Register</Link></p>
         </form>
+
+        <div>
+          <h3>Test Login</h3>
+          <p>Username: kawrenn15</p>
+          <p>Pass: pass123</p>
+        </div>
       </div>
     );
   } 

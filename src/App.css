@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cardo&display=swap');
 
 /* GLOBAL STYLES */
 
@@ -61,7 +62,7 @@ textarea,
 footer p,
 a,
 .project p {
-    font-family: serif;    
+    font-family: 'Cardo', serif;    
 }
 
 h1,
@@ -143,7 +144,7 @@ nav button:hover {
 .log a {
     background: #17252A;
     color: white;
-    padding: 4px 16px;
+    padding: 4px 10px;
     border-radius: 5px;
 }
 
@@ -359,8 +360,8 @@ nav button:hover {
 
 .add-resource form,
 .edit-resource form,
-.login-form form,
-.edit-account form {
+.edit-account form,
+.login-form form {
     width: 100%;
     max-width: 400px;
     margin: 0 auto;
@@ -368,6 +369,8 @@ nav button:hover {
     padding: 25px 20px 30px;
     color: white;
     border-radius: 5px;
+    box-shadow: 1px 1px 2px #2b7a78;
+
 }
 
 .add-resource input,
@@ -387,12 +390,14 @@ select {
 
 input[type='submit'],
 .login-form button,
-.submit button {
+.submit button,
+.login-form button {
     color: #DEF2F1;
     border: 1px solid #DEF2F1;
     background: #17252A;
     transition: 200ms linear;
 }
+
 
 .login-form button {
     width: 100%;
@@ -443,6 +448,10 @@ form.hidden {
     margin-top: 30px;
 }
 
+.login-link {
+    color: white;
+}
+
 
 @media (min-width: 768px) {
     nav {
@@ -471,6 +480,10 @@ form.hidden {
     .nav-container a,
     .nav-container button {
         font-size: 16px;        
+    }
+    .log button,
+    .log a {
+        padding: 4px 16px;
     }
     .landing-content {
         margin: 0 auto;

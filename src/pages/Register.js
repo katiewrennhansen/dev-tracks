@@ -23,8 +23,9 @@ class Register extends Component {
   render(){
     return (
       <div className="login-form">
+        <h1>Register</h1>
         <form onSubmit={(e) => {this.handleRegistration(e)}}>
-            <h1>Register</h1>
+            <h3>Enter your information below</h3>
             <div className="form-content">
                 <label htmlFor="username">Name: </label>
                 <input 
@@ -48,7 +49,7 @@ class Register extends Component {
                     placeholer="password"
                 />
                 <input type="submit" value="Register"/>
-                <p>Already have an account? <Link to='/login'>Login</Link></p>
+                <p>Already have an account? <Link className="login-link" to='/login'>Login</Link></p>
             </div>
         </form>
       </div>
